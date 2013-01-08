@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="CustomButton" parent="@*android:style/Widget.Button">
+        <item name="android:textSize">16.0sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:gravity">center</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+        <item name="android:shadowColor">#95024a79</item>
+        <item name="android:shadowDx">0.0</item>
+        <item name="android:shadowDy">-2.0</item>
+        <item name="android:shadowRadius">0.3</item>
+    </style>
+    <style name="CustomButton.ToggleRed" parent="@style/CustomButton">
+        <item name="android:textStyle">normal</item>
+        <item name="android:background">@drawable/button_toggle_red</item>
+    </style>
+    <style name="CustomButton.Red" parent="@style/CustomButton">
+        <item name="android:background">@drawable/button_red</item>
+    </style>
+    <style name="CustomButton.Green" parent="@style/CustomButton">
+        <item name="android:background">@drawable/button_green</item>
+    </style>
+    <style name="BrownButton" parent="@*android:style/Widget.Button">
+        <item name="android:textSize">16.0sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/brown</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/button_brown</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+    </style>
+    <style name="BrownCheckBox" parent="@*android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:textSize">15.0sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:paddingLeft">44.0dip</item>
+        <item name="android:button">@drawable/checkbox_brown_yellow</item>
+    </style>
+    <style name="CheckBoxTasks" parent="@*android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:textSize">18.0sp</item>
+        <item name="android:textColor">@color/brown</item>
+        <item name="android:button">@drawable/checkbox_tasks</item>
+    </style>
+    <style name="WhiteLabel">
+        <item name="android:textSize">15.0sp</item>
+        <item name="android:textColor">@*android:color/white</item>
+    </style>
+    <style name="CustomButton.Spinner" parent="@style/CustomButton">
+        <item name="android:textSize">18.0sp</item>
+        <item name="android:height">52.0dip</item>
+    </style>
+    <style name="CustomButton.Spinner.Red" parent="@style/CustomButton.Spinner">
+        <item name="android:background">@drawable/spinner_red</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+    </style>
+    <style name="SpinnerText">
+        <item name="android:textSize">16.0sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:shadowColor">#95024a79</item>
+        <item name="android:shadowDx">0.0</item>
+        <item name="android:shadowDy">-2.0</item>
+        <item name="android:shadowRadius">0.3</item>
+    </style>
+</resources>

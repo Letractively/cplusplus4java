@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item type="id" name="taskNameEditText">false</item>
+    <item type="id" name="expectedPomodorosNumberTextView">false</item>
+    <item type="id" name="expectedPodomorosSeekBar">false</item>
+    <item type="id" name="saveBtn">false</item>
+    <item type="id" name="popUpRootElement">false</item>
+    <item type="id" name="completedBtn">false</item>
+    <item type="id" name="isDone">false</item>
+    <item type="id" name="taskName">false</item>
+    <item type="id" name="doneExpectedTextBox">false</item>
+    <item type="id" name="loadMoreBtn">false</item>
+    <item type="id" name="addTask">false</item>
+    <item type="id" name="timelineBackground">false</item>
+    <item type="id" name="timeline">false</item>
+    <item type="id" name="noteArea">false</item>
+    <item type="id" name="taskTextView">false</item>
+    <item type="id" name="picturesHolder">false</item>
+    <item type="id" name="start">false</item>
+    <item type="id" name="settings">false</item>
+    <item type="id" name="shortBreak">false</item>
+    <item type="id" name="longBreak">false</item>
+    <item type="id" name="volumeSeekBar">false</item>
+    <item type="id" name="tickingSeekBar">false</item>
+    <item type="id" name="vibrationCheckBox">false</item>
+    <item type="id" name="keepScreenOnCheckBox">false</item>
+    <item type="id" name="shortBreakSpinner">false</item>
+    <item type="id" name="longBreakSpinner">false</item>
+    <item type="id" name="taskList">false</item>
+    <item type="id" name="text">false</item>
+</resources>
