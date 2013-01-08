@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="brown">#ff823e10</color>
+    <color name="lightBrown">#ffc1997e</color>
+    <color name="light_yellow">#fffbffa4</color>
+    <color name="white">#ffffffff</color>
+    <color name="listDelimiterBlue">#ffbfd2e0</color>
+</resources>

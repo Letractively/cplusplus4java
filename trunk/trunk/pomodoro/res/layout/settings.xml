@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="vertical" android:background="@drawable/background_main" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageView android:layout_gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="38.0dip" android:src="@drawable/pomodoro_settings_logo" />
+    <LinearLayout android:orientation="vertical" android:padding="20.0dip" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        <LinearLayout android:gravity="center" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <ImageView android:layout_gravity="center" android:layout_width="14.0dip" android:layout_height="14.0dip" android:layout_marginRight="5.0dip" android:src="@drawable/ic_note" />
+            <TextView android:layout_gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/ringing_volume" style="@style/WhiteLabel" />
+        </LinearLayout>
+        <SeekBar android:id="@id/volumeSeekBar" android:padding="5.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:maxHeight="16.0dip" android:max="100" android:progress="0" android:secondaryProgress="0" android:progressDrawable="@drawable/seek_bar_progress" android:minHeight="16.0dip" android:thumb="@drawable/seek_thumb_normal" />
+        <LinearLayout android:gravity="center" android:layout_width="fill_parent" android:layout_height="wrap_content">
+            <ImageView android:layout_gravity="center" android:layout_width="14.0dip" android:layout_height="14.0dip" android:layout_marginRight="5.0dip" android:src="@drawable/ic_note" />
+            <TextView android:layout_gravity="center" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/ticking_volume" style="@style/WhiteLabel" />
+        </LinearLayout>
+        <SeekBar android:id="@id/tickingSeekBar" android:padding="5.0dip" android:layout_width="fill_parent" android:layout_height="wrap_content" android:maxHeight="16.0dip" android:max="100" android:progress="0" android:secondaryProgress="0" android:progressDrawable="@drawable/seek_bar_progress" android:minHeight="16.0dip" android:thumb="@drawable/seek_thumb_normal" />
+        <CheckBox android:id="@id/vibrationCheckBox" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="10.0dip" android:text="@string/vibrating_alert" style="@style/BrownCheckBox" />
+        <CheckBox android:id="@id/keepScreenOnCheckBox" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="3.0dip" android:text="@string/keep_screen_on" style="@style/BrownCheckBox" />
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="15.0dip" android:text="@string/short_break_duration" style="@style/WhiteLabel" />
+        <Spinner android:id="@id/shortBreakSpinner" android:layout_width="fill_parent" android:layout_height="wrap_content" style="@style/CustomButton.Spinner.Red" />
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="@string/long_break_duration" style="@style/WhiteLabel" />
+        <Spinner android:id="@id/longBreakSpinner" android:layout_width="fill_parent" android:layout_height="wrap_content" style="@style/CustomButton.Spinner.Red" />
+    </LinearLayout>
+</LinearLayout>

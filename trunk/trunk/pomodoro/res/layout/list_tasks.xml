@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:gravity="center_vertical" android:orientation="horizontal" android:background="@drawable/list_activities_background_selector" android:paddingLeft="10.0dip" android:paddingRight="10.0dip" android:layout_width="fill_parent" android:layout_height="fill_parent"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+    <LinearLayout android:gravity="center_vertical" android:layout_width="wrap_content" android:layout_height="40.0dip" android:layout_alignParentLeft="true">
+        <CheckBox android:id="@id/isDone" android:focusable="false" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginRight="0.0dip" android:button="@drawable/checkbox_tasks" />
+        <TextView android:textSize="18.0sp" android:textColor="@color/brown" android:id="@id/taskName" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="some text" />
+    </LinearLayout>
+    <LinearLayout android:gravity="center" android:layout_width="wrap_content" android:layout_height="40.0dip" android:layout_alignParentRight="true">
+        <TextView android:textSize="18.0sp" android:textColor="@color/brown" android:id="@id/doneExpectedTextBox" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="0/8" />
+    </LinearLayout>
+</RelativeLayout>

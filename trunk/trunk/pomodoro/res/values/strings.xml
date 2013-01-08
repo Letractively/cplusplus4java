@@ -1,7 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <string name="hello">Hello World!</string>
-    <string name="app_name">Pomodoro</string>
-
+    <string name="hello">Hello World, PomodoroActivity!</string>
+    <string name="app_name">Pomodoro Pro</string>
+    <string name="local_service_started">Pomodoro has started</string>
+    <string name="local_service_stopped">Pomodoro has stopped</string>
+    <string name="local_service_label">Pomodoro is running</string>
+    <string name="local_service_connected">Pomodoro service conected</string>
+    <string name="pomodoro_running_title">Running pomodoro</string>
+    <string name="pomodoro_running_content">Your pomodoro is running. Focus!</string>
+    <string name="pomodoro_finished_title">Finished podomoro.</string>
+    <string name="pomodoro_finished_content">Time to take a short break.</string>
+    <string name="pause_running_title">Running break.</string>
+    <string name="pause_running_content">Take a rest, you deserve it!</string>
+    <string name="pause_finished_title">Finised break.</string>
+    <string name="pause_finished_content">The break is over, time to work!</string>
+    <string name="pause_selection_title_1">Every fourth break should be longer.</string>
+    <string name="pause_selection_title_2">Which break would you like to take?</string>
+    <string name="pause_selection_short_break_option">Short break</string>
+    <string name="pause_selection_long_break_option">Long break</string>
+    <string name="ringing_volume">Ringing volume</string>
+    <string name="ticking_volume">Ticking volume</string>
+    <string name="vibrating_alert">Vibrating alert</string>
+    <string name="keep_screen_on">Keep screen on during pomodoros</string>
+    <string name="short_break_duration">Short break duration:</string>
+    <string name="long_break_duration">Long break duration:</string>
+    <string name="empty_task_message">Tap to add a task</string>
+    <string name="start_pomodoro">Start pomodoro</string>
+    <string name="abandon_pomodoro">Abandon pomodoro</string>
+    <string name="skip_break">Skip the break</string>
+    <string name="delete_title">Choose action</string>
+    <string name="delete_action">Delete this task</string>
+    <string name="task_name">Task name:</string>
+    <string name="expected_pomodoros">Expected podomoros:</string>
+    <string name="save_btn">Save</string>
 </resources>
