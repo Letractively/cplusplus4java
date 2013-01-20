@@ -9,7 +9,7 @@
 
 #include "cartoon.h"
 
-void test(){
+void test4cartoonifyImage(){
 	IplImage* img=cvLoadImage("src/lena.jpg");
 	Mat m(img,false);
 	Mat displayFrame=Mat(m.size(),CV_8UC3);
