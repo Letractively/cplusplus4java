@@ -25,7 +25,7 @@ int main(int argc, char** argv)
 	//chp02exam1();
 	//chp02exam01();
 	//chp03exam3();
-	test();
+	test4cartoonifyImage();
 
 
   return 0;
