@@ -1,26 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
-  xmlns:android="http://schemas.android.com/apk/res/android">
-    <LinearLayout android:orientation="vertical" android:id="@id/timelineBackground" android:background="@drawable/background_top" android:layout_width="fill_parent" android:layout_height="132.0dip">
-        <ImageView android:layout_gravity="center_horizontal" android:layout_width="wrap_content" android:layout_height="38.0dip" android:src="@drawable/pomodoro_timer_logo" />
-        <ImageView android:id="@id/timeline" android:layout_width="672.0dip" android:layout_height="94.0dip" android:layout_marginLeft="150.0dip" android:src="@drawable/pomodoro_timeline" android:scaleType="centerCrop" />
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@id/timelineBackground"
+        android:layout_width="fill_parent"
+        android:layout_height="132.0dip"
+        android:background="@drawable/background_top"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="38.0dip"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/pomodoro_timer_logo" />
+
+        <ImageView
+            android:id="@id/timeline"
+            android:layout_width="672.0dip"
+            android:layout_height="94.0dip"
+            android:layout_marginLeft="150.0dip"
+            android:scaleType="centerCrop"
+            android:src="@drawable/pomodoro_timeline" />
     </LinearLayout>
-    <LinearLayout android:gravity="center" android:background="@drawable/background_middle" android:layout_width="fill_parent" android:layout_height="30.0dip">
-        <ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="2.0dip" android:src="@drawable/timer_arrow" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="30.0dip"
+        android:background="@drawable/background_middle"
+        android:gravity="center" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2.0dip"
+            android:src="@drawable/timer_arrow" />
     </LinearLayout>
-    <LinearLayout android:gravity="center_horizontal" android:orientation="vertical" android:background="@drawable/background_bottom" android:layout_width="fill_parent" android:layout_height="fill_parent">
-        <RelativeLayout android:gravity="center" android:id="@id/noteArea" android:background="@drawable/note" android:padding="30.0dip" android:clickable="true" android:layout_width="260.0dip" android:layout_height="0.0dip" android:layout_weight="1.0">
-            <TextView android:textSize="18.0sp" android:textColor="@color/brown" android:gravity="center" android:id="@id/taskTextView" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="Tap to add a task" />
-            <LinearLayout android:id="@id/picturesHolder" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentLeft="true" android:layout_alignParentBottom="true" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/background_bottom"
+        android:gravity="center_horizontal"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:id="@id/noteArea"
+            android:layout_width="260.0dip"
+            android:layout_height="0.0dip"
+            android:layout_weight="1.0"
+            android:background="@drawable/note"
+            android:clickable="true"
+            android:gravity="center"
+            android:padding="30.0dip" >
+
+            <TextView
+                android:id="@id/taskTextView"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:text="Tap to add a task"
+                android:textColor="@color/brown"
+                android:textSize="18.0sp" />
+
+            <LinearLayout
+                android:id="@id/picturesHolder"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true" />
         </RelativeLayout>
-        <LinearLayout android:gravity="center" android:layout_width="fill_parent" android:layout_height="70.0dip">
-            <LinearLayout android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="0.2" />
-            <LinearLayout android:gravity="center" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="0.6">
-                <ToggleButton android:id="@id/start" android:layout_width="fill_parent" android:layout_height="50.0dip" android:textOn="Abandon pomodoro" android:textOff="Start pomodoro" style="@style/CustomButton.ToggleRed" />
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="70.0dip"
+            android:gravity="center" >
+
+            <LinearLayout
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2" />
+
+            <LinearLayout
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.6"
+                android:gravity="center" >
+
+                <ToggleButton
+                    android:id="@id/start"
+                    style="@style/CustomButton.ToggleRed"
+                    android:layout_width="fill_parent"
+                    android:layout_height="50.0dip"
+                    android:textOff="Start pomodoro"
+                    android:textOn="Abandon pomodoro" />
             </LinearLayout>
-            <LinearLayout android:gravity="center" android:layout_width="0.0dip" android:layout_height="wrap_content" android:layout_weight="0.2">
-                <Button android:id="@id/settings" android:background="@drawable/button_settings" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="" />
+
+            <LinearLayout
+                android:layout_width="0.0dip"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.2"
+                android:gravity="center" >
+
+                <Button
+                    android:id="@id/settings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_settings"
+                    android:text="" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
+
 </LinearLayout>
