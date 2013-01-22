@@ -8,12 +8,9 @@
 #ifndef CHP06_H_
 #define CHP06_H_
 
-#include <opencv2/opencv.hpp>
-#include "annotate.h"
 
-using namespace cv;
 
-void test4file();
+void test4annotate_main(int argc, char** argv);
 
 
 

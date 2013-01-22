@@ -6,9 +6,12 @@
  */
 #include "chp06.h"
 #include "ft/ft.hpp"
+#include "annotate.h"
 
-void test4file(){
+using namespace cv;
 
+void test4annotate_main(int argc, char** argv){
+	annotate_main(argc,argv);
 }
 
 
