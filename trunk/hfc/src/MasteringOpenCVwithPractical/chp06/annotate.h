@@ -351,8 +351,7 @@ int annotate_main(int argc,char** argv)
     }
     file.close();
     annotation.data.rm_incomplete_samples();
-  }else{
-    //open video stream
+  }else{//open video stream
     VideoCapture cam;
     if(type == 1)cam.open(ifile); else cam.open(0);
     if(!cam.isOpened()){
@@ -400,13 +399,10 @@ int annotate_main(int argc,char** argv)
   annotation.draw_instructions();
   annotation.idx = 0;
 
-  /*
   while(1){ annotation.draw_connections();
     imshow(annotation.wname,annotation.image); if(waitKey(0) == 'q')break;
   }
-  */
-  imshow(annotation.wname,annotation.image);
-  cvWaitKey(0);
+
 
   save_ft(fname.c_str(),annotation.data);
 
