@@ -18,22 +18,33 @@
 #include "stdio.h"	// For 'sprintf()'
 
 //==============================================================================
+/*
+ * in fact erase all invalid points
+ */
 void
 ft_data::
 rm_incomplete_samples()
 {
   int n = points[0].size(),N = points.size();
-  for(int i = 1; i < N; i++)n = max(n,int(points[i].size()));
+  for(int i = 1; i < N; i++)n = max(n,int(points[i].size()));//get the max of one dimension
+
   for(int i = 0; i < int(points.size()); i++){
+	//if is not valid points ,so erase it
     if(int(points[i].size()) != n){
-      points.erase(points.begin()+i); imnames.erase(imnames.begin()+i); i--;
+      points.erase(points.begin()+i);
+      imnames.erase(imnames.begin()+i);
+      i--;
     }else{
+      //loop all members in points
       int j = 0;
       for(; j < n; j++){
-    if((points[i][j].x <= 0) || (points[i][j].y <= 0))break;
+    	  if((points[i][j].x <= 0) || (points[i][j].y <= 0))break;
       }
+      //if break above in code indicate that it is not valid, so erase it
       if(j < n){
-    points.erase(points.begin()+i); imnames.erase(imnames.begin()+i); i--;
+    	  points.erase(points.begin()+i);
+    	  imnames.erase(imnames.begin()+i);
+    	  i--;
       }
     }
   }
