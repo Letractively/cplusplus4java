@@ -181,11 +181,14 @@ void pc_MouseCallback(int event, int x, int y, int /*flags*/, void* /*param*/)
     int imin = annotation.find_closest_point(Point2f(x,y));
     if(imin >= 0){ //add connection
       int m = annotation.data.connections.size();
-      if(m == 0)annotation.data.connections.push_back(Vec2i(imin,-1));
-      else{
-    if(annotation.data.connections[m-1][1] < 0)//1st connecting point chosen
-      annotation.data.connections[m-1][1] = imin;
-    else annotation.data.connections.push_back(Vec2i(imin,-1));
+      if(m == 0){
+    	  annotation.data.connections.push_back(Vec2i(imin,-1));
+      }else{
+    	  if(annotation.data.connections[m-1][1] < 0){//1st connecting point chosen
+    		  annotation.data.connections[m-1][1] = imin;
+    	  }else{
+    		  annotation.data.connections.push_back(Vec2i(imin,-1));
+    	  }
       }
       annotation.draw_connections();
       imshow(annotation.wname,annotation.image);
@@ -270,6 +273,7 @@ public:
     string y = str.substr(p1,p2-p1); p1 = p2+1;
     points.push_back(Point2f(atoi(x.c_str()),atoi(y.c_str())));
       }
+      //because the final xy has not pair comma,so duplicate code here...
       p2 = str.find(",",p1);
       if(p2 == string::npos){cerr << "Invalid MUCT file" << endl; exit(0);}
       string x = str.substr(p1,p2-p1); p1 = p2+1;
@@ -322,6 +326,10 @@ parse_ifile(int argc,
   ifile = ""; return 0;
 }
 //==============================================================================
+/*
+ * annotate: annotation tool
+ * arguments:  -m roc_/ -d outdir
+ */
 int annotate_main(int argc,char** argv)
 {
   //parse cmd line options
@@ -342,14 +350,16 @@ int annotate_main(int argc,char** argv)
     if(!file_is_open ){
       cerr << "Failed opening " << lmfile << " for reading!" << endl; return 0;
     }
-    string str; getline(file,str);
+    string str; getline(file,str);//csv first line is column name,so skip it
     while(!file.eof()){
       getline(file,str); if(str.length() == 0)break;
-      muct_data d(str,ifile); if(d.name.length() == 0)continue;
+      muct_data d(str,ifile);//wrap one line of muct76-opencv.csv data into one muct_data class instance
+      if(d.name.length() == 0)continue;//if picture name is empty,so skip it
+      //collect the name and array points of one line to ft_data container
       annotation.data.imnames.push_back(d.name);
       annotation.data.points.push_back(d.points);
     }
-    file.close();
+    file.close();//use up ifstream,remember colse it
     annotation.data.rm_incomplete_samples();
   }else{//open video stream
     VideoCapture cam;
@@ -390,7 +400,7 @@ int annotate_main(int argc,char** argv)
     if(annotation.data.points[0].size() == 0)return 0;
     annotation.replicate_annotations(0);
   }
-  save_ft(fname.c_str(),annotation.data);
+  save_ft(fname.c_str(),annotation.data);//put all data to yaml file
 
   //annotate connectivity
   setMouseCallback(annotation.wname,pc_MouseCallback,0);
@@ -402,8 +412,6 @@ int annotate_main(int argc,char** argv)
   while(1){ annotation.draw_connections();
     imshow(annotation.wname,annotation.image); if(waitKey(0) == 'q')break;
   }
-
-
   save_ft(fname.c_str(),annotation.data);
 
   //annotate symmetry
@@ -441,8 +449,57 @@ int annotate_main(int argc,char** argv)
   save_ft(fname.c_str(),annotation.data); destroyWindow("Annotate"); return 0;
 }
 //==============================================================================
+/*
+ * visualize_annotations: Display annotated data to screen
+ * arguments: outdir/annotations.yaml
+ */
+int visualize_annotate_main(int argc,char** argv)
+{
+	//load data
+	if( argc<2 ){
+		cout<<"usage:   ./hfc annotation_file  "<<endl;
+		return 0;
+	}
+	const char *an_file=argv[1];
+	ft_data data= load_ft<ft_data>( an_file );
+	if( data.imnames.size()==0 ){
+		cerr<<"Data file does not contain any annotations."<<endl;
+		return 0;
+	}
+	data.rm_incomplete_samples();
+	cout<<"n images: "<<data.imnames.size()<<endl
+			<<"n points: "<<data.symmetry.size()<<endl
+			<<"n connnections: "<<data.connections.size()<<endl;
 
+	//display data
+	namedWindow("Annotations");
+	int index=0;bool flipped=false;
+	while(1){
+		Mat image;
+		if( flipped ){
+			image=data.get_image(index,3);
+		}else{
+			image=data.get_image(index,2);
+		}
+		data.draw_points(image,index,flipped);
+		data.draw_sym(image,index,flipped);
+		imshow("Annotations",image);
+		int c=waitKey(0);
+		if( c=='q' ){
+			break;
+		}else if( c=='p' ){index++;}
+		else if( c=='o' ){index--;}
+		else if( c=='f' ){flipped=!flipped;}
 
+		if( index<0 ){
+			index=0;
+		}else if( index>=int( data.imnames.size() ) ){
+			index=data.imnames.size()-1;
+		}
+	}
+	destroyWindow("Annotations");
+	return 0;
+}
 
 
 
