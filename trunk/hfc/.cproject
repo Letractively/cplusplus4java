@@ -18,11 +18,16 @@
 					<folderInfo id="cdt.managedbuild.config.gnu.cygwin.exe.release.1974968243." name="/" resourcePath="">
 						<toolChain id="cdt.managedbuild.toolchain.gnu.mingw.base.1835329802" name="MinGW GCC" nonInternalBuilderId="cdt.managedbuild.target.gnu.builder.base" superClass="cdt.managedbuild.toolchain.gnu.mingw.base">
 							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.PE" id="cdt.managedbuild.target.gnu.platform.mingw.base.969935227" name="Debug Platform" osList="win32" superClass="cdt.managedbuild.target.gnu.platform.mingw.base"/>
-							<builder autoBuildTarget="all" buildPath="${workspace_loc:/hfc/Release}" cleanBuildTarget="clean" id="org.eclipse.cdt.build.core.internal.builder.1665917085" incrementalBuildTarget="all" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="CDT Internal Builder" superClass="org.eclipse.cdt.build.core.internal.builder"/>
+							<builder autoBuildTarget="all" buildPath="${workspace_loc:/hfc/Release}" cleanBuildTarget="clean" id="org.eclipse.cdt.build.core.internal.builder.1665917085" incrementalBuildTarget="all" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="CDT Internal Builder" superClass="org.eclipse.cdt.build.core.internal.builder">
+								<outputEntries>
+									<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="outputPath" name="Release"/>
+									<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="outputPath" name="Debug"/>
+								</outputEntries>
+							</builder>
 							<tool id="cdt.managedbuild.tool.gnu.assembler.mingw.base.888595724" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.mingw.base">
 								<option id="gnu.both.asm.option.include.paths.1749679374" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;D:\android\OpenCVDesk\opencv\build\include&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;D:\android\OpenCVDesk\opencv\build\include\opencv&quot;"/>
+									<listOptionValue builtIn="false" value="D:/android/OpenCVDesk/opencv/build/include"/>
+									<listOptionValue builtIn="false" value="D:/android/OpenCVDesk/opencv/build/include/opencv"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.1516272987" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 							</tool>
@@ -31,8 +36,8 @@
 								<option id="gnu.cpp.compiler.option.optimization.level.216086336" name="Optimization Level" superClass="gnu.cpp.compiler.option.optimization.level" value="gnu.cpp.compiler.optimization.level.most" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.option.debugging.level.752350190" name="Debug Level" superClass="gnu.cpp.compiler.option.debugging.level" value="gnu.cpp.compiler.debugging.level.none" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.option.include.paths.1365067292" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;D:\android\OpenCVDesk\opencv\build\include&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;D:\android\OpenCVDesk\opencv\build\include\opencv&quot;"/>
+									<listOptionValue builtIn="false" value="D:/android/OpenCVDesk/opencv/build/include"/>
+									<listOptionValue builtIn="false" value="D:/android/OpenCVDesk/opencv/build/include/opencv"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.115066091" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
@@ -40,22 +45,15 @@
 								<option defaultValue="gnu.c.optimization.level.most" id="gnu.c.compiler.option.optimization.level.217922064" name="Optimization Level" superClass="gnu.c.compiler.option.optimization.level" valueType="enumerated"/>
 								<option id="gnu.c.compiler.option.debugging.level.1976804892" name="Debug Level" superClass="gnu.c.compiler.option.debugging.level" value="gnu.c.debugging.level.none" valueType="enumerated"/>
 								<option id="gnu.c.compiler.option.include.paths.1596983697" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
-									<listOptionValue builtIn="false" value="&quot;D:\android\OpenCVDesk\opencv\build\include&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;D:\android\OpenCVDesk\opencv\build\include\opencv&quot;"/>
+									<listOptionValue builtIn="false" value="D:/android/OpenCVDesk/opencv/build/include"/>
+									<listOptionValue builtIn="false" value="D:/android/OpenCVDesk/opencv/build/include/opencv"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1973831910" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.c.linker.mingw.base.835679763" name="MinGW C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.mingw.base"/>
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.mingw.base.459207646" name="MinGW C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.mingw.base">
-								<option id="gnu.cpp.link.option.paths.1749976537" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" valueType="libPaths">
-									<listOptionValue builtIn="false" value="&quot;D:\android\OpenCVDesk\opencv\build\x86\mingw\lib&quot;"/>
-								</option>
-								<option id="gnu.cpp.link.option.libs.2065348097" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
-									<listOptionValue builtIn="false" value="opencv_core242"/>
-									<listOptionValue builtIn="false" value="opencv_highgui242"/>
-									<listOptionValue builtIn="false" value="opencv_imgproc242"/>
-									<listOptionValue builtIn="false" value="opencv_objdetect242"/>
-								</option>
+								<option id="gnu.cpp.link.option.paths.1749976537" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" valueType="libPaths"/>
+								<option id="gnu.cpp.link.option.libs.2065348097" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs"/>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.1624371598" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
@@ -64,12 +62,13 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="src|src/MasteringOpenCVwithPractical|src/MasteringOpenCVwithPractical/chp01|src/MasteringOpenCVwithPractical/chp06" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
-						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="src/MasteringOpenCVwithPractical/chp06/ft"/>
-						<entry excluding="ft" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="src/MasteringOpenCVwithPractical/chp06"/>
-						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="src/MasteringOpenCVwithPractical/chp01"/>
-						<entry excluding="chp06/ft|chp06|chp01" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="src/MasteringOpenCVwithPractical"/>
-						<entry excluding="MasteringOpenCVwithPractical/chp06/ft|MasteringOpenCVwithPractical/chp06|MasteringOpenCVwithPractical/chp01|MasteringOpenCVwithPractical" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="src"/>
+						<entry excluding="LearningOpenCV|MasteringOpenCVwithPractical|MasteringOpenCVwithPractical/chp01|MasteringOpenCVwithPractical/chp06/ft|MasteringOpenCVwithPractical/chp06" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src/LearningOpenCV"/>
+						<entry excluding="ft" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src/MasteringOpenCVwithPractical/chp06"/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src/MasteringOpenCVwithPractical/chp06/ft"/>
+						<entry excluding="src/MasteringOpenCVwithPractical/chp06|src/MasteringOpenCVwithPractical|LearningOpenCV2|src|src/MasteringOpenCVwithPractical/chp01" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src/MasteringOpenCVwithPractical/chp01"/>
+						<entry excluding="chp01|chp06/ft|chp06" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src/MasteringOpenCVwithPractical"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -720,12 +719,13 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="src|src/MasteringOpenCVwithPractical" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
-						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="src/MasteringOpenCVwithPractical/chp06/ft"/>
-						<entry excluding="ft" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="src/MasteringOpenCVwithPractical/chp06"/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src/LearningOpenCV"/>
 						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="src/MasteringOpenCVwithPractical/chp01"/>
-						<entry excluding="chp06/ft|chp06|chp01" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="src/MasteringOpenCVwithPractical"/>
-						<entry excluding="MasteringOpenCVwithPractical/chp06/ft|MasteringOpenCVwithPractical/chp06|MasteringOpenCVwithPractical/chp01|MasteringOpenCVwithPractical" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="src"/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="src/MasteringOpenCVwithPractical/chp06/ft"/>
+						<entry excluding="LearningOpenCV|MasteringOpenCVwithPractical|MasteringOpenCVwithPractical/chp01|MasteringOpenCVwithPractical/chp06/ft|MasteringOpenCVwithPractical/chp06" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="src"/>
+						<entry excluding="src/MasteringOpenCVwithPractical|LearningOpenCV2|src" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry excluding="chp01|chp06|chp06/ft" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="src/MasteringOpenCVwithPractical"/>
+						<entry excluding="ft" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="src/MasteringOpenCVwithPractical/chp06"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
