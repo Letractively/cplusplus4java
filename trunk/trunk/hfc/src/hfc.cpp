@@ -10,10 +10,10 @@
 
 #include <iostream>
 
-//#include "Learning_OpenCV.h"
+#include "LearningOpenCV/Learning_OpenCV.h"
 //#include "opencv_tutorials.h"
 //#include "MasteringOpenCVwithPractical/chp01/chp01.h"
-#include "MasteringOpenCVwithPractical/chp06/chp06.h"
+//#include "MasteringOpenCVwithPractical/chp06/chp06.h"
 
 using namespace std;
 
@@ -23,9 +23,9 @@ int main(int argc, char** argv)
 
 	//chp02exam1();
 	//chp02exam01();
-	//chp03exam3();
+	chp03exam3();
 	//test4cartoonifyImage();
-	test4annotate_main( argc,  argv);
+	//test4annotate_main( argc,  argv);
 
   return 0;
 }

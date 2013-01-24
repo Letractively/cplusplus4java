@@ -6,7 +6,6 @@
  */
 
 #include "Learning_OpenCV.h"
-
 using namespace cv;
 using namespace std;
 
