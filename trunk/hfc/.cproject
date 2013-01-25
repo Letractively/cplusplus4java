@@ -52,8 +52,10 @@
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.c.linker.mingw.base.835679763" name="MinGW C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.mingw.base"/>
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.mingw.base.459207646" name="MinGW C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.mingw.base">
-								<option id="gnu.cpp.link.option.paths.1749976537" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" valueType="libPaths"/>
-								<option id="gnu.cpp.link.option.libs.2065348097" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs"/>
+								<option id="gnu.cpp.link.option.paths.1749976537" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths"/>
+								<option id="gnu.cpp.link.option.libs.2065348097" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
+									<listOptionValue builtIn="false" value="opencv_contrib242"/>
+								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.1624371598" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>
@@ -62,13 +64,15 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="LearningOpenCV|MasteringOpenCVwithPractical|MasteringOpenCVwithPractical/chp01|MasteringOpenCVwithPractical/chp06/ft|MasteringOpenCVwithPractical/chp06" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src/LearningOpenCV"/>
-						<entry excluding="ft" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src/MasteringOpenCVwithPractical/chp06"/>
-						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src/MasteringOpenCVwithPractical/chp06/ft"/>
+						<entry excluding="chp08|chp01|chp06/ft|chp06" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src/MasteringOpenCVwithPractical"/>
 						<entry excluding="src/MasteringOpenCVwithPractical/chp06|src/MasteringOpenCVwithPractical|LearningOpenCV2|src|src/MasteringOpenCVwithPractical/chp01" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src/opencv_tutorials"/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src/MasteringOpenCVwithPractical/chp06/ft"/>
+						<entry excluding="opencv_tutorials|LearningOpenCV|MasteringOpenCVwithPractical|MasteringOpenCVwithPractical/chp01|MasteringOpenCVwithPractical/chp06/ft|MasteringOpenCVwithPractical/chp06" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
+						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src/MasteringOpenCVwithPractical/chp08"/>
 						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src/MasteringOpenCVwithPractical/chp01"/>
-						<entry excluding="chp01|chp06/ft|chp06" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src/MasteringOpenCVwithPractical"/>
+						<entry excluding="ft" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src/MasteringOpenCVwithPractical/chp06"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -710,6 +714,7 @@
 									<listOptionValue builtIn="false" value="opencv_imgproc242"/>
 									<listOptionValue builtIn="false" value="opencv_highgui242"/>
 									<listOptionValue builtIn="false" value="opencv_core242"/>
+									<listOptionValue builtIn="false" value="opencv_contrib242"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.1170832003" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
@@ -719,13 +724,9 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src/LearningOpenCV"/>
-						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="src/MasteringOpenCVwithPractical/chp01"/>
-						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="src/MasteringOpenCVwithPractical/chp06/ft"/>
-						<entry excluding="LearningOpenCV|MasteringOpenCVwithPractical|MasteringOpenCVwithPractical/chp01|MasteringOpenCVwithPractical/chp06/ft|MasteringOpenCVwithPractical/chp06" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="src"/>
 						<entry excluding="src/MasteringOpenCVwithPractical|LearningOpenCV2|src" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
-						<entry excluding="chp01|chp06|chp06/ft" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="src/MasteringOpenCVwithPractical"/>
-						<entry excluding="ft" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="src/MasteringOpenCVwithPractical/chp06"/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="src/MasteringOpenCVwithPractical/chp08"/>
+						<entry excluding="MasteringOpenCVwithPractical/chp08|LearningOpenCV/|opencv_tutorials/|MasteringOpenCVwithPractical/chp01/|MasteringOpenCVwithPractical/chp06/" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="src"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
