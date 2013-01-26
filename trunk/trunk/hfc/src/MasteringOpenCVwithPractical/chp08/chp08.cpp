@@ -34,7 +34,7 @@
 //const char *facerecAlgorithm = "FaceRecognizer.Eigenfaces";
 const char *facerecAlgorithm = "FaceRecognizer.LBPH";
 
-const char *inputImagePath="src/MasteringOpenCVwithPractical/chp08/img/andy_liu_6.jpg";
+const char *inputImagePath="src/MasteringOpenCVwithPractical/chp08/img/andy_liu_5.jpg";
 
 // Sets how confident the Face Verification algorithm should be to decide if it is an unknown person or a known person.
 // A value roughly around 0.5 seems OK for Eigenfaces or 0.7 for Fisherfaces, but you may want to adjust it for your
