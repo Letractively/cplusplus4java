@@ -18,7 +18,7 @@ int test4tesseract_api_example(int argc,char** argv){
 
 		const char *language = "eng";//  chi_tra       chi_sim
 	    const char *datapath = "./src/tesseract/";
-	    const char* filename = "./src/tesseract/tif/eng_text1.TIF";
+	    const char* filename = "./src/tesseract/tif/phototest.tif";
 
 	    PIX  *pix;
 	    tesseract::TessBaseAPI *tAPI = new tesseract::TessBaseAPI();
