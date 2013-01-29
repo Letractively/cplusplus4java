@@ -28,6 +28,7 @@
 								<option id="gnu.both.asm.option.include.paths.1749679374" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="D:/android/OpenCVDesk/opencv/build/include"/>
 									<listOptionValue builtIn="false" value="D:/android/OpenCVDesk/opencv/build/include/opencv"/>
+									<listOptionValue builtIn="false" value="&quot;D:\android\tesseractDesk\include&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.1516272987" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 							</tool>
@@ -38,6 +39,7 @@
 								<option id="gnu.cpp.compiler.option.include.paths.1365067292" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="D:/android/OpenCVDesk/opencv/build/include"/>
 									<listOptionValue builtIn="false" value="D:/android/OpenCVDesk/opencv/build/include/opencv"/>
+									<listOptionValue builtIn="false" value="&quot;D:\android\tesseractDesk\include&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.115066091" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input"/>
 							</tool>
@@ -47,14 +49,20 @@
 								<option id="gnu.c.compiler.option.include.paths.1596983697" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="D:/android/OpenCVDesk/opencv/build/include"/>
 									<listOptionValue builtIn="false" value="D:/android/OpenCVDesk/opencv/build/include/opencv"/>
+									<listOptionValue builtIn="false" value="&quot;D:\android\tesseractDesk\include&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1973831910" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>
 							<tool id="cdt.managedbuild.tool.gnu.c.linker.mingw.base.835679763" name="MinGW C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.mingw.base"/>
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.mingw.base.459207646" name="MinGW C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.mingw.base">
-								<option id="gnu.cpp.link.option.paths.1749976537" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths"/>
+								<option id="gnu.cpp.link.option.paths.1749976537" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" valueType="libPaths">
+									<listOptionValue builtIn="false" value="&quot;D:\android\tesseractDesk\lib&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;D:\android\OpenCVDesk\opencv\build\x86\mingw\lib&quot;"/>
+								</option>
 								<option id="gnu.cpp.link.option.libs.2065348097" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
 									<listOptionValue builtIn="false" value="opencv_contrib242"/>
+									<listOptionValue builtIn="false" value="lept"/>
+									<listOptionValue builtIn="false" value="tesseract"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.1624371598" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
@@ -64,15 +72,9 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src/LearningOpenCV"/>
-						<entry excluding="chp08|chp01|chp06/ft|chp06" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src/MasteringOpenCVwithPractical"/>
 						<entry excluding="src/MasteringOpenCVwithPractical/chp06|src/MasteringOpenCVwithPractical|LearningOpenCV2|src|src/MasteringOpenCVwithPractical/chp01" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
-						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src/opencv_tutorials"/>
-						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src/MasteringOpenCVwithPractical/chp06/ft"/>
-						<entry excluding="opencv_tutorials|LearningOpenCV|MasteringOpenCVwithPractical|MasteringOpenCVwithPractical/chp01|MasteringOpenCVwithPractical/chp06/ft|MasteringOpenCVwithPractical/chp06" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src"/>
-						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src/MasteringOpenCVwithPractical/chp08"/>
-						<entry flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src/MasteringOpenCVwithPractical/chp01"/>
-						<entry excluding="ft" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name="src/MasteringOpenCVwithPractical/chp06"/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="src/tesseract"/>
+						<entry excluding="tesseract|data/|LearningOpenCV/|MasteringOpenCVwithPractical/|opencv_tutorials/|pencilSketch/" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="src"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -680,6 +682,7 @@
 							<builder buildPath="${workspace_loc:/hfc/Debug}" id="cdt.managedbuild.tool.gnu.builder.mingw.base.1013531257" keepEnvironmentInBuildfile="false" name="CDT Internal Builder" superClass="cdt.managedbuild.tool.gnu.builder.mingw.base"/>
 							<tool command="as" commandLinePattern="${COMMAND} ${FLAGS} ${OUTPUT_FLAG}${OUTPUT_PREFIX}${OUTPUT} ${INPUTS}" id="cdt.managedbuild.tool.gnu.assembler.mingw.exe.debug.875719277" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.mingw.exe.debug">
 								<option id="gnu.both.asm.option.include.paths.255078473" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;D:\android\tesseractDesk\include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;D:\android\OpenCVDesk\opencv\build\include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;D:\android\OpenCVDesk\opencv\build\include\opencv&quot;"/>
 								</option>
@@ -690,6 +693,7 @@
 								<option id="gnu.cpp.compiler.mingw.exe.debug.option.optimization.level.57655529" name="Optimization Level" superClass="gnu.cpp.compiler.mingw.exe.debug.option.optimization.level" value="gnu.cpp.compiler.optimization.level.none" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.mingw.exe.debug.option.debugging.level.1915960068" name="Debug Level" superClass="gnu.cpp.compiler.mingw.exe.debug.option.debugging.level" value="gnu.cpp.compiler.debugging.level.max" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.option.include.paths.1533357551" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;D:\android\tesseractDesk\include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;D:\android\OpenCVDesk\opencv\build\include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;D:\android\OpenCVDesk\opencv\build\include\opencv&quot;"/>
 								</option>
@@ -699,6 +703,7 @@
 								<option defaultValue="gnu.c.optimization.level.none" id="gnu.c.compiler.mingw.exe.debug.option.optimization.level.576281347" name="Optimization Level" superClass="gnu.c.compiler.mingw.exe.debug.option.optimization.level" valueType="enumerated"/>
 								<option id="gnu.c.compiler.mingw.exe.debug.option.debugging.level.1280856530" name="Debug Level" superClass="gnu.c.compiler.mingw.exe.debug.option.debugging.level" value="gnu.c.debugging.level.max" valueType="enumerated"/>
 								<option id="gnu.c.compiler.option.include.paths.1880160818" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
+									<listOptionValue builtIn="false" value="&quot;D:\android\tesseractDesk\include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;D:\android\OpenCVDesk\opencv\build\include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;D:\android\OpenCVDesk\opencv\build\include\opencv&quot;"/>
 								</option>
@@ -708,6 +713,7 @@
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.mingw.exe.debug.748942997" name="MinGW C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.mingw.exe.debug">
 								<option id="gnu.cpp.link.option.paths.42151930" name="Library search path (-L)" superClass="gnu.cpp.link.option.paths" valueType="libPaths">
 									<listOptionValue builtIn="false" value="&quot;D:\android\OpenCVDesk\opencv\build\x86\mingw\lib&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;D:\android\tesseractDesk\lib&quot;"/>
 								</option>
 								<option id="gnu.cpp.link.option.libs.588883844" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
 									<listOptionValue builtIn="false" value="opencv_objdetect242"/>
@@ -715,6 +721,9 @@
 									<listOptionValue builtIn="false" value="opencv_highgui242"/>
 									<listOptionValue builtIn="false" value="opencv_core242"/>
 									<listOptionValue builtIn="false" value="opencv_contrib242"/>
+									<listOptionValue builtIn="false" value="lept"/>
+									<listOptionValue builtIn="false" value="tesseract"/>
+									<listOptionValue builtIn="false" value="tiff"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.1170832003" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
@@ -724,9 +733,9 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="src/MasteringOpenCVwithPractical|LearningOpenCV2|src" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
-						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="src/pencilSketch"/>
-						<entry excluding="pencilSketch|LearningOpenCV/|MasteringOpenCVwithPractical/|opencv_tutorials/" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="src"/>
+						<entry excluding="tessdata|src/MasteringOpenCVwithPractical|LearningOpenCV2|src" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
+						<entry flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="src/tesseract"/>
+						<entry excluding="tesseract|LearningOpenCV/|MasteringOpenCVwithPractical/|opencv_tutorials/|pencilSketch/" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="src"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
