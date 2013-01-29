@@ -8,7 +8,7 @@
 #include <cv.h>
 #include <highgui.h>
 
-const char *inputImagePath="src/MasteringOpenCVwithPractical/chp08/img/baby.jpg";
+const char *inputImagePath="src/MasteringOpenCVwithPractical/chp08/img/andy_liu_hat_no.jpg";
 
 const char *windowName = "WebcamFaceRec";   // Name shown in the GUI window.
 
