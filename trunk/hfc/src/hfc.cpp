@@ -8,14 +8,15 @@
 
 
 
-#include <iostream>
+
 
 //#include "LearningOpenCV/Learning_OpenCV.h"
 //#include "opencv_tutorials/opencv_tutorials.h"
 //#include "MasteringOpenCVwithPractical/chp01/chp01.h"
 //#include "MasteringOpenCVwithPractical/chp06/chp06.h"
 //#include "MasteringOpenCVwithPractical/chp08/chp08.h"
-#include "pencilSketch/pencil_sketch_main.h"
+//#include "pencilSketch/pencil_sketch_main.h"
+#include "tesseract/tesseractCase1.h"
 
 using namespace std;
 
@@ -29,7 +30,8 @@ int main(int argc, char** argv)
 	//test4cartoonifyImage();
 	//test4annotate_main( argc,  argv);
 	//test4face_recognition_noCamera_main(argc,argv);
-	test_pencil_sketch_main(argc,argv);
+	//test_pencil_sketch_main(argc,argv);
+	test4tesseract_api_example(argc,argv);
 
   return 0;
 }
