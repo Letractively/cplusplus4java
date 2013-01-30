@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, JlgsmsActivity!</string>
+    <string name="app_name">嘉丽购短信</string>
+    <string name="update_contact_button_name">刷新嘉丽购业绩短信列表</string>
+
+</resources>
