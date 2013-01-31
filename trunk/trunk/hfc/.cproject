@@ -63,6 +63,9 @@
 									<listOptionValue builtIn="false" value="opencv_contrib242"/>
 									<listOptionValue builtIn="false" value="lept"/>
 									<listOptionValue builtIn="false" value="tesseract"/>
+									<listOptionValue builtIn="false" value="opencv_core242"/>
+									<listOptionValue builtIn="false" value="opencv_highgui242"/>
+									<listOptionValue builtIn="false" value="opencv_imgproc242"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.1624371598" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
@@ -1322,6 +1325,7 @@
 					</profile>
 				</scannerConfigBuildInfo>
 			</storageModule>
+			<storageModule moduleId="org.eclipse.cdt.core.language.mapping"/>
 		</cconfiguration>
 	</storageModule>
 	<storageModule moduleId="cdtBuildSystem" version="4.0.0">
