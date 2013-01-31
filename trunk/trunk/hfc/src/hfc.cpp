@@ -32,8 +32,8 @@ int main(int argc, char** argv)
 	//test4face_recognition_noCamera_main(argc,argv);
 	//test_pencil_sketch_main(argc,argv);
 	//test4tesseract_api_example(argc,argv);
-	//test4tesseract_chi_tra(argc,argv);
-	test4tesseract_opencv_preprocess(argc,argv);
+	test4tesseract_chi_tra(argc,argv);
+	//test4tesseract_opencv_preprocess(argc,argv);
 
   return 0;
 }
