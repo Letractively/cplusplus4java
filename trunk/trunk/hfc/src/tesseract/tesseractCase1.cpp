@@ -77,7 +77,8 @@ int test4tesseract_chi_tra(int argc,char** argv){
 		printf("Tesseract-ocr: %s\n","test4tesseract_chi_tra" );
 		const char *language = "chi_sim";//  chi_tra    chi_sim   eng
 	    const char *datapath = "./src/tesseract/";
-	    const char* filename = "./src/tesseract/tif/chinese_text3.TIF";
+	    const char* filename = "./src/tesseract/tif/chinese_text6.jpg";
+	    const char* filename_new = "./src/tesseract/tif/chinese_text6.jpg";
 
 	    //PIX  *pix;
 	    tesseract::TessBaseAPI *tAPI = new tesseract::TessBaseAPI();
@@ -89,12 +90,25 @@ int test4tesseract_chi_tra(int argc,char** argv){
 	    //cv::imwrite('chi_roc.tif',image, 'Compression', 'none');
 	    	    //cv::Mat image=cv::imread(filename,CV_LOAD_IMAGE_ANYCOLOR|CV_LOAD_IMAGE_ANYDEPTH);
 	    	    //image.convertTo(image,CV_16UC3,255,255);
+	    /*
 	    IplImage* img_old=cvLoadImage( filename,CV_LOAD_IMAGE_GRAYSCALE );
 
-	    tAPI->Init(datapath, language, tesseract::OEM_DEFAULT);
+
+	    int p[3];
+	    p[0]=CV_IMWRITE_JPEG_QUALITY;
+	    p[2]=100;//compression 0-100
+	    cvSaveImage(filename_new,img_old,p);
+	    cvReleaseImage(&img_old);
+	    */
+	    IplImage* img_new=cvLoadImage(filename_new,CV_LOAD_IMAGE_GRAYSCALE);
+
+	    tAPI->Init(datapath, language, tesseract::OEM_DEFAULT);//初始化api对象
+	    //tAPI->SetPageSegMode(tesseract::PSM_AUTO);//设置自动进行版面分析
+	    //tAPI->SetAccuracyVSpeed(tesseract::AVS_FASTEST);//要求速度最快
+
 	    //tAPI->SetImage((uchar*)image.data, image.size().width, image.size().height, image.channels(),image.step1());
-	    tAPI->SetImage( (unsigned char*)img_old->imageData,img_old->width,img_old->height,img_old->nChannels,img_old->widthStep  );
-	    tAPI->SetRectangle(0,0,img_old->width,img_old->height);
+	    tAPI->SetImage( (unsigned char*)img_new->imageData,img_new->width,img_new->height,img_new->nChannels,img_new->widthStep  );
+	    	    tAPI->SetRectangle(0,0,img_new->width,img_new->height);
 	    //tAPI->Recognize(0);
 	    // run ocr
 	    char* outText = tAPI->GetUTF8Text();
