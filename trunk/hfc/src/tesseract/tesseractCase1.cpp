@@ -75,10 +75,10 @@ imwrite(I1,'chi.tif', 'Compression', 'none');   --
 
 int test4tesseract_chi_tra(int argc,char** argv){
 		printf("Tesseract-ocr: %s\n","test4tesseract_chi_tra" );
-		const char *language = "chi_sim";//  chi_tra    chi_sim   eng
+		const char *language = "eng";//  chi_tra    chi_sim   eng
 	    const char *datapath = "./src/tesseract/";
-	    const char* filename = "./src/tesseract/tif/chinese_text6.jpg";
-	    const char* filename_new = "./src/tesseract/tif/chinese_text6.jpg";
+	    const char* filename = "./src/tesseract/tif/carCard.TIF";
+	    const char* filename_new = "./src/tesseract/tif/phototest.tif";
 
 	    //PIX  *pix;
 	    tesseract::TessBaseAPI *tAPI = new tesseract::TessBaseAPI();
@@ -92,14 +92,12 @@ int test4tesseract_chi_tra(int argc,char** argv){
 	    	    //image.convertTo(image,CV_16UC3,255,255);
 	    /*
 	    IplImage* img_old=cvLoadImage( filename,CV_LOAD_IMAGE_GRAYSCALE );
-
-
 	    int p[3];
 	    p[0]=CV_IMWRITE_JPEG_QUALITY;
 	    p[2]=100;//compression 0-100
 	    cvSaveImage(filename_new,img_old,p);
 	    cvReleaseImage(&img_old);
-	    */
+*/
 	    IplImage* img_new=cvLoadImage(filename_new,CV_LOAD_IMAGE_GRAYSCALE);
 
 	    tAPI->Init(datapath, language, tesseract::OEM_DEFAULT);//初始化api对象
