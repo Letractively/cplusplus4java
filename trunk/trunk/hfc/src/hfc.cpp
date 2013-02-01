@@ -16,7 +16,8 @@
 //#include "MasteringOpenCVwithPractical/chp06/chp06.h"
 //#include "MasteringOpenCVwithPractical/chp08/chp08.h"
 //#include "pencilSketch/pencil_sketch_main.h"
-#include "tesseract/tesseractCase1.h"
+//#include "tesseract/tesseractCase1.h"
+#include "basicOCR/basicOCR_usecase.h"
 
 using namespace std;
 
@@ -32,8 +33,11 @@ int main(int argc, char** argv)
 	//test4face_recognition_noCamera_main(argc,argv);
 	//test_pencil_sketch_main(argc,argv);
 	//test4tesseract_api_example(argc,argv);
-	test4tesseract_chi_tra(argc,argv);
+	//test4tesseract_chi_tra(argc,argv);
 	//test4tesseract_opencv_preprocess(argc,argv);
+	test4basicOCR_usecase_main(argc,argv);
+
+
 
   return 0;
 }
