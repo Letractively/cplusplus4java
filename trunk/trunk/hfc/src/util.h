@@ -11,6 +11,7 @@
 #include <opencv2/opencv.hpp>
 #include <opencv2/highgui/highgui.hpp>
 
-void alert_win(IplImage* image);
-
+//void alert_win(IplImage* image);
+void alert_win(const CvArr* image);
+void alert_win(cv::Mat image);
 #endif /* UTIL_H_ */
