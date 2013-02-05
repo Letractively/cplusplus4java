@@ -77,7 +77,7 @@
 					</folderInfo>
 					<sourceEntries>
 						<entry excluding="src/MasteringOpenCVwithPractical/chp06|src/MasteringOpenCVwithPractical|LearningOpenCV2|src|src/MasteringOpenCVwithPractical/chp01" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
-						<entry excluding="basicOCR/|data/|LearningOpenCV/|MasteringOpenCVwithPractical/|opencv_tutorials/|pencilSketch/|tesseract/" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="src"/>
+						<entry excluding="data/|MasteringOpenCVwithPractical/|LearningOpenCV/|basicOCR/|tesseract/|pencilSketch/|opencv_tutorials/" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="src"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
@@ -737,8 +737,8 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="tessdata|src/MasteringOpenCVwithPractical|LearningOpenCV2|src" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
-						<entry excluding="basicOCR/|data/|LearningOpenCV/|MasteringOpenCVwithPractical/|opencv_tutorials/|pencilSketch/|tesseract/" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="src"/>
+						<entry excluding="data/|MasteringOpenCVwithPractical/|LearningOpenCV/|basicOCR/|tesseract/|pencilSketch/|opencv_tutorials/" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="src"/>
+						<entry excluding="src/MasteringOpenCVwithPractical|tessdata|LearningOpenCV2|src" flags="VALUE_WORKSPACE_PATH|RESOLVED" kind="sourcePath" name=""/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
