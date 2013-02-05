@@ -18,7 +18,8 @@
 //#include "pencilSketch/pencil_sketch_main.h"
 //#include "tesseract/tesseractCase1.h"
 //#include "basicOCR/basicOCR_usecase.h"
-#include "OpenCV2Cookbook/chp02/chp02.h"
+//#include "OpenCV2Cookbook/chp02/chp02.h"
+#include "OpenCV2Cookbook/chp04/chp04.h"
 
 using namespace std;
 
@@ -40,7 +41,9 @@ int main(int argc, char** argv)
 	//test4saltImage(argc,argv);
 	//test4colorReduce(argc,argv);
 	//test4sharpenContrast();
-	test4addLogoImage();
+	//test4addLogoImage();
+
+	case4histogram();
 
   return 0;
 }

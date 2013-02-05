@@ -11,5 +11,10 @@
 
 
 
+void case1histogram();
+void case2histogram();
+void case3histogram();
+void case4histogram();
+
 
 #endif /* OPENCV2COOKBOOKCHP04_H_ */
