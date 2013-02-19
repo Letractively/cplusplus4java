@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, JilaNumberActivity!</string>
+    <string name="app_name">JilaNumber</string>
+	<string name="splashscreen_image">splash imageview</string>
+    
+</resources>
