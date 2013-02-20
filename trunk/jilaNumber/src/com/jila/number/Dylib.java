@@ -1,5 +1,7 @@
 package com.jila.number;
 
+import android.content.res.AssetManager;
+
 public class Dylib {
 	
 	
@@ -7,7 +9,10 @@ public class Dylib {
 		System.loadLibrary("jilanumber");
 	}
 	
-	public native String initializeDylib( String paramstr );
+	
+	
+	
+	public native String initializeDylib( String paramstr,AssetManager am );
     public native String finalizeDylib( String paramstr );
 	
     
