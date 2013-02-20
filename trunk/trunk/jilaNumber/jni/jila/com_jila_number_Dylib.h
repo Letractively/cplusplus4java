@@ -7,13 +7,17 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+#include <android/asset_manager.h>
+AAssetManager* g_am;
+
 /*
  * Class:     com_jila_number_Dylib
  * Method:    initializeDylib
  * Signature: (Ljava/lang/String;)Ljava/lang/String;
  */
 JNIEXPORT jstring JNICALL Java_com_jila_number_Dylib_initializeDylib
-  (JNIEnv *, jobject, jstring);
+  (JNIEnv *, jobject, jstring,jobject param4am);
 
 /*
  * Class:     com_jila_number_Dylib
@@ -22,6 +26,8 @@ JNIEXPORT jstring JNICALL Java_com_jila_number_Dylib_initializeDylib
  */
 JNIEXPORT jstring JNICALL Java_com_jila_number_Dylib_finalizeDylib
   (JNIEnv *, jobject, jstring);
+
+
 
 #ifdef __cplusplus
 }

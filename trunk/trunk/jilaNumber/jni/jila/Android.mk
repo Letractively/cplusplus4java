@@ -22,7 +22,7 @@ OPENCV_INSTALL_MODULES:=on
 # include ~/OpenCV/android/build/OpenCV.mk
 
 
-include ../sdk/native/jni/OpenCV.mk
+include ../../../../android/OpenCV/sdk/native/jni/OpenCV.mk
 #ifeq ("$(wildcard $(OPENCV_MK_PATH))","")
     #try to load OpenCV.mk from default install location
 #    include $(TOOLCHAIN_PREBUILT_ROOT)/user/share/OpenCV/OpenCV.mk
@@ -47,6 +47,7 @@ LOCAL_C_INCLUDES += $(LOCAL_PATH)/../libjson/
 LOCAL_STATIC_LIBRARIES += libjson
 
 LOCAL_LDLIBS +=  -llog -ldl -lstdc++
+LOCAL_LDLIBS +=  -landroid
 
 # Since we have source + headers files in an external folder, we need to show where they are.
 LOCAL_SRC_FILES := com_jila_number_Dylib.cpp
