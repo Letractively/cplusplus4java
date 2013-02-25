@@ -10,6 +10,7 @@
 
 using namespace std;
 
+int test4tesseract_api_example(int argc,char** argv);
 int test4tesseract_opencv_preprocess(int argc,char** argv);
 int test4tesseract_chi_tra(int argc,char** argv);
 

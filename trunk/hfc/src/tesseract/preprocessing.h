@@ -25,3 +25,6 @@
 #endif
 
 IplImage preprocessing(IplImage* imgSrc,int new_width, int new_height);
+
+
+IplImage preprocessing2(IplImage* imgSrc,int new_width, int new_height);
