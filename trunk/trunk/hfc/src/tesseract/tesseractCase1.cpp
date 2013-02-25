@@ -12,9 +12,9 @@
 
 int test4tesseract_api_example(int argc,char** argv){
 
-		const char *language = "chi_sim";//  chi_tra    chi_sim   eng
+		const char *language = "eng";//  chi_tra    chi_sim   eng
 	    const char *datapath = "./src/tesseract/";
-	    const char* filename = "./src/tesseract/tif/chi_sim_text4.TIF";
+	    const char* filename = "./src/tesseract/tif/eng_text3_ko.TIF";
 
 	    PIX  *pix;
 	    tesseract::TessBaseAPI *tAPI = new tesseract::TessBaseAPI();
@@ -125,7 +125,7 @@ int test4tesseract_opencv_preprocess(int argc,char** argv){
 		printf("Tesseract-ocr: %s\n","test4tesseract_opencv_preprocess" );
 		const char *language = "eng";//  chi_tra    chi_sim   eng
 	    const char *datapath = "./src/tesseract/";
-	    const char* filename = "./src/tesseract/tif/eng_text3_ko.TIF";
+	    const char* filename = "./src/tesseract/tif/20130224_152839.jpg";
 
 	    PIX  *pix;
 	    tesseract::TessBaseAPI *tAPI = new tesseract::TessBaseAPI();
@@ -141,16 +141,40 @@ int test4tesseract_opencv_preprocess(int argc,char** argv){
 	    //cv::imwrite('chi_roc.tif',image, 'Compression', 'none');
 	    image.convertTo(image,CV_16UC3,255,255);
 */
-	    IplImage* img_old=cvLoadImage( filename,CV_LOAD_IMAGE_GRAYSCALE );
-	    int width=cvGetSize( img_old ).width;
-	    int height=cvGetSize( img_old ).height;
-	    IplImage img=preprocessing(img_old,width,height);
+	    //IplImage* img_old=cvLoadImage( filename,CV_LOAD_IMAGE_GRAYSCALE );
+	    cv::Mat img_old=cv::imread( filename );
+	    cv::Mat binary;
+	    cv::cvtColor(img_old,binary,CV_BGR2GRAY );
+	    cv::threshold(binary,binary,100,255,cv::THRESH_BINARY );
+	    //Eliminate noise and smaller objects
+	    cv::Mat image01;
+	    cv::Mat image;
+	    cv::erode(binary,image01,cv::Mat(),cv::Point(-1,-1),2);
+	    //resize if pic is too big
+	    if( image01.cols>500.0&&image01.rows>500.0 ){
+	    	double scale=500.0/image01.cols;
+	    	cv::Size dsize=cv::Size(image01.cols*scale,image01.rows*scale);
+	    	image=cv::Mat(dsize,CV_32SC1 );
+	    	cv::resize(image01,image,dsize);
+	    }else{
+	    	image=image01;
+	    }
 
-	    alert_win(&img);
+	    //alert_win(img_old);
+	    //alert_win(image01);
+	    alert_win(image);
+	    /*
+		int width=cvGetSize( img_old ).width;
+		int height=cvGetSize( img_old ).height;
+		IplImage img=preprocessing(img_old,width,height);
 
-	    cv::Mat image= cv::Mat(&img,false);
+		alert_win(&img);
+		//opencv2tesseract
+		cv::Mat image= cv::Mat(&img,false);
+		*/
+		tAPI->SetImage((uchar*)image.data, image.size().width, image.size().height, image.channels(),     image.step1());
 
-	    tAPI->SetImage((uchar*)image.data, image.size().width, image.size().height, image.channels(),     image.step1());
+
 	    tAPI->Recognize(0);
 	    // run ocr
 	    char* outText = tAPI->GetUTF8Text();
@@ -162,7 +186,7 @@ int test4tesseract_opencv_preprocess(int argc,char** argv){
 	    delete [] outText;
 	    pixDestroy(&pix);
 
-	    cvReleaseImage(&img_old);
+	    //cvReleaseImage(&img_old);
 
 	    return 0;
 }

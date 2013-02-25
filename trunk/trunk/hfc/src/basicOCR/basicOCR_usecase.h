@@ -10,7 +10,7 @@
 
 
 int test4basicOCR_usecase_main( int argc, char** argv );
-
+int test4basicOCR_usecase2_main( int argc, char** argv );
 
 
 #endif /* BASICOCR_USECASE_H_ */

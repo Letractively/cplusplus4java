@@ -6,7 +6,7 @@
  */
 
 #include "basicOCR_usecase.h"
-
+#include "../util.h"
 
 
 #ifdef _CH_
@@ -166,6 +166,36 @@ int test4basicOCR_usecase_main( int argc, char** argv )
 
     return 0;
 }
+
+int test4basicOCR_usecase2_main( int argc, char** argv ){
+	const char* filename = "./src/basicOCR/img/20130224_152839_ko.jpg";
+	cv::Mat img_old=cv::imread( filename );
+		    cv::Mat binary;
+		    cv::cvtColor(img_old,binary,CV_BGR2GRAY );
+		    cv::threshold(binary,binary,100,255,cv::THRESH_BINARY );
+		    //Eliminate noise and smaller objects
+		    cv::Mat image01;
+		    cv::Mat image;
+		    cv::erode(binary,image01,cv::Mat(),cv::Point(-1,-1),2);
+		    //resize if pic is too big
+		    if( image01.cols>500.0&&image01.rows>500.0 ){
+		    	double scale=500.0/image01.cols;
+		    	cv::Size dsize=cv::Size(image01.cols*scale,image01.rows*scale);
+		    	image=cv::Mat(dsize,CV_32SC1 );
+		    	cv::resize(image01,image,dsize);
+		    }else{
+		    	image=image01;
+		    }
+
+		    //alert_win(img_old);
+		    //alert_win(image01);
+		    alert_win(image);
+
+		    IplImage imagen=image;
+		    basicOCR ocr;
+		    ocr.classify(&imagen,1);
+}
+
 
 #ifdef _EiC
 main(1,"mouseEvent.c");
