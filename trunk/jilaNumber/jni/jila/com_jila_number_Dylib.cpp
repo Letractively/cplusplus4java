@@ -57,16 +57,17 @@ char*   Jstring2CStr(JNIEnv*   env,   jstring   jstr,int* charLen)
 }
 
 void assetCopy2SDCard(const char* sourceFile,const char* sourceFilename){
-	AAsset* one=AAssetManager_open(g_am,sourceFile,AASSET_MODE_BUFFER);
+
 
 	char targetFilename[255];
-	sprintf(targetFilename,"/sdcard/%s",sourceFilename );
+	sprintf(targetFilename,"/data/data/com.jila.number/files/OCR/%s",sourceFilename );
 	packt::Log::info(targetFilename);
 
 	const int BUFSIZE=100;
 	char buf[BUFSIZE];
 	int nb_read=0;
 	FILE* targetFile=fopen(targetFilename,"w+");
+	AAsset* one=AAssetManager_open(g_am,sourceFile,AASSET_MODE_RANDOM);
 	while( (nb_read=AAsset_read(one,buf,BUFSIZE))>0 ){
 		fwrite(buf,nb_read,1,targetFile);
 	}
@@ -74,8 +75,19 @@ void assetCopy2SDCard(const char* sourceFile,const char* sourceFilename){
 	fclose(targetFile);
 
 	AAsset_close(one);
-}
 
+
+}
+void assetRemove2SDCard(const char* sourceFile,const char* sourceFilename){
+
+
+	char targetFilename[255];
+	sprintf(targetFilename,"/data/data/com.jila.number/files/%s",sourceFilename );
+	packt::Log::info(targetFilename);
+	remove( targetFilename );
+
+
+}
 /*/////////////////////////////////////////////////////////////////////
  *util method end
  /////////////////////////////////////////////////////////////////////*/
@@ -176,7 +188,7 @@ JNIEXPORT jstring JNICALL Java_com_jila_number_Dylib_initializeDylib
 	AAssetDir_close(ar);
 */
 
-/* recursively all file under OCR   */
+/* recursively all file under OCR  */
 		char file_path[255];
 		sprintf(file_path , "OCR/");
 		char sourceFile[255];
@@ -197,11 +209,12 @@ JNIEXPORT jstring JNICALL Java_com_jila_number_Dylib_initializeDylib
 				packt::Log::info( sourceFile );
 				//deal with every file
 				assetCopy2SDCard(sourceFile,sourceFilename);
-				packt::Log::info("one end...");
+				//assetRemove2SDCard(sourceFile,sourceFilename);
+				packt::Log::info("assetRemove2SDCard one  end...");
 			}
 		}
 
-
+		//assetRemove2SDCard("","ocr");
 	/*  */
 	return re;
 }
