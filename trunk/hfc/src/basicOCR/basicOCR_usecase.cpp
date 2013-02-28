@@ -168,7 +168,7 @@ int test4basicOCR_usecase_main( int argc, char** argv )
 }
 
 int test4basicOCR_usecase2_main( int argc, char** argv ){
-	const char* filename = "./src/basicOCR/img/20130224_152839_ko.jpg";
+	const char* filename = "./src/basicOCR/img/20130224_152839_1.jpg";
 	cv::Mat img_old=cv::imread( filename );
 		    cv::Mat binary;
 		    cv::cvtColor(img_old,binary,CV_BGR2GRAY );
@@ -191,9 +191,11 @@ int test4basicOCR_usecase2_main( int argc, char** argv ){
 		    //alert_win(image01);
 		    alert_win(image);
 
+		    /*   */
 		    IplImage imagen=image;
 		    basicOCR ocr;
 		    ocr.classify(&imagen,1);
+
 }
 
 
