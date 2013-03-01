@@ -33,8 +33,21 @@
 //const char *facerecAlgorithm = "FaceRecognizer.Fisherfaces";
 //const char *facerecAlgorithm = "FaceRecognizer.Eigenfaces";
 const char *facerecAlgorithm = "FaceRecognizer.LBPH";
+const char *inputImagePath="src/MasteringOpenCVwithPractical/chp08/img/beauty.jpg";
+// Cascade Classifier file:
+//used for Face Detection.
+//const char *faceCascadeFilename = "src/data/lbpcascade_frontalface.xml";     // LBP face detector.
+//const char *faceCascadeFilename = "src/data/haarcascade_frontalface_alt_tree.xml";  // Haar face detector.
+//const char *faceCascadeFilename = "src/data/haarcascades/haarcascade_frontalface_default.xml";
+const char *faceCascadeFilename = "src/data/haarcascades/haarcascade_frontalface_alt_tree.xml";
 
-const char *inputImagePath="src/MasteringOpenCVwithPractical/chp08/img/andy_liu_5.jpg";
+//used for eye Detection.
+//const char *eyeCascadeFilename1 = "src/data/haarcascade_lefteye_2splits.xml";   // Best eye detector for open-or-closed eyes.
+//const char *eyeCascadeFilename2 = "src/data/haarcascade_righteye_2splits.xml";   // Best eye detector for open-or-closed eyes.
+const char *eyeCascadeFilename1 = "src/data/haarcascades/haarcascade_mcs_lefteye.xml";       // Good eye detector for open-or-closed eyes.
+const char *eyeCascadeFilename2 = "src/data/haarcascades/haarcascade_mcs_righteye.xml";       // Good eye detector for open-or-closed eyes.
+//const char *eyeCascadeFilename1 = "src/data/haarcascade_eye.xml";               // Basic eye detector for open eyes only.
+//const char *eyeCascadeFilename2 = "src/data/haarcascade_eye_tree_eyeglasses.xml"; // Basic eye detector for open eyes if they might wear glasses.
 
 // Sets how confident the Face Verification algorithm should be to decide if it is an unknown person or a known person.
 // A value roughly around 0.5 seems OK for Eigenfaces or 0.7 for Fisherfaces, but you may want to adjust it for your
@@ -42,18 +55,6 @@ const char *inputImagePath="src/MasteringOpenCVwithPractical/chp08/img/andy_liu_
 // Note that a higher threshold value means accepting more faces as known people,
 // whereas lower values mean more faces will be classified as "unknown".
 const float UNKNOWN_PERSON_THRESHOLD = 0.7f;
-
-
-// Cascade Classifier file, used for Face Detection.
-const char *faceCascadeFilename = "src/data/lbpcascade_frontalface.xml";     // LBP face detector.
-//const char *faceCascadeFilename = "src/data/haarcascade_frontalface_alt_tree.xml";  // Haar face detector.
-//const char *eyeCascadeFilename1 = "src/data/haarcascade_lefteye_2splits.xml";   // Best eye detector for open-or-closed eyes.
-//const char *eyeCascadeFilename2 = "src/data/haarcascade_righteye_2splits.xml";   // Best eye detector for open-or-closed eyes.
-//const char *eyeCascadeFilename1 = "src/data/haarcascade_mcs_lefteye.xml";       // Good eye detector for open-or-closed eyes.
-//const char *eyeCascadeFilename2 = "src/data/haarcascade_mcs_righteye.xml";       // Good eye detector for open-or-closed eyes.
-const char *eyeCascadeFilename1 = "src/data/haarcascade_eye.xml";               // Basic eye detector for open eyes only.
-const char *eyeCascadeFilename2 = "src/data/haarcascade_eye_tree_eyeglasses.xml"; // Basic eye detector for open eyes if they might wear glasses.
-
 
 // Set the desired face dimensions. Note that "getPreprocessedFace()" will return a square face.
 const int faceWidth = 70;
@@ -701,3 +702,122 @@ int test4face_recognition_noCamera_main(int argc, char *argv[])
 
     return 0;
 }
+
+void test4face_detect() {
+	CascadeClassifier faceCascade;
+	CascadeClassifier eyeCascade1;
+	CascadeClassifier eyeCascade2;
+
+	// Load the face and 1 or 2 eye detection XML classifiers.
+	initDetectors(faceCascade, eyeCascade1, eyeCascade2);
+
+	Ptr<FaceRecognizer> model;
+	vector<Mat> preprocessedFaces;
+	vector<int> faceLabels;
+	Mat old_prepreprocessedFace;
+
+	//load image from disk
+	IplImage* img = cvLoadImage(inputImagePath);
+	//Mat gray;
+	Mat cameraFrame(img, true);
+	alert_win(cameraFrame);
+	cvReleaseImage(&img);
+
+	// Get a copy of the camera frame that we can draw onto.
+	Mat displayedFrame;
+	cameraFrame.copyTo(displayedFrame);
+
+	// Run the face recognition system on the camera image. It will draw some things onto the given image, so make sure it is not read-only memory!
+	int identity = -1;
+
+	// Find a face and preprocess it to have a standard size and contrast & brightness.
+	Rect faceRect; // Position of detected face.
+	Rect searchedLeftEye, searchedRightEye; // top-left and top-right regions of the face, where eyes were searched.
+	Point leftEye, rightEye; // Position of the detected eyes.
+	Mat preprocessedFace = getPreprocessedFace(displayedFrame, faceWidth,
+			faceCascade, eyeCascade1, eyeCascade2,
+			preprocessLeftAndRightSeparately, &faceRect, &leftEye, &rightEye,
+			&searchedLeftEye, &searchedRightEye);
+
+	bool gotFaceAndEyes = false;
+	if (preprocessedFace.data) {
+		gotFaceAndEyes = true;
+	}
+	// Draw an anti-aliased rectangle around the detected face.
+	if (faceRect.width > 0) {
+		rectangle(displayedFrame, faceRect, CV_RGB(255, 255, 0), 2, CV_AA);
+
+		// Draw light-blue anti-aliased circles for the 2 eyes.
+		Scalar eyeColor = CV_RGB(0,255,255);
+		if (leftEye.x >= 0) { // Check if the eye was detected
+			circle(displayedFrame,
+					Point(faceRect.x + leftEye.x, faceRect.y + leftEye.y), 6,
+					eyeColor, 1, CV_AA);
+		}
+		if (rightEye.x >= 0) { // Check if the eye was detected
+			circle(displayedFrame,
+					Point(faceRect.x + rightEye.x, faceRect.y + rightEye.y), 6,
+					eyeColor, 1, CV_AA);
+		}
+	}
+
+	// Show the current preprocessed face in the top-center of the display.
+	int cx = (displayedFrame.cols - faceWidth) / 2;
+	if (preprocessedFace.data) {
+		// Get a BGR version of the face, since the output is BGR color.
+		Mat srcBGR = Mat(preprocessedFace.size(), CV_8UC3);
+		cvtColor(preprocessedFace, srcBGR, CV_GRAY2BGR);
+		// Get the destination ROI (and make sure it is within the image!).
+		//min(m_gui_faces_top + i * faceHeight, displayedFrame.rows - faceHeight);
+		Rect dstRC = Rect(cx, BORDER, faceWidth, faceHeight);
+		Mat dstROI = displayedFrame(dstRC);
+		// Copy the pixels from src to dst.
+		srcBGR.copyTo(dstROI);
+	}
+	// Draw an anti-aliased border around the face, even if it is not shown.
+	rectangle(displayedFrame,
+			Rect(cx - 1, BORDER - 1, faceWidth + 2, faceHeight + 2),
+			CV_RGB(200,200,200), 1, CV_AA);
+
+
+	// Show the most recent face for each of the collected people, on the right side of the display.
+	m_gui_faces_left = displayedFrame.cols - BORDER - faceWidth;
+	m_gui_faces_top = BORDER;
+	for (int i = 0; i < m_numPersons; i++) {
+		int index = m_latestFaces[i];
+		if (index >= 0 && index < (int) preprocessedFaces.size()) {
+			Mat srcGray = preprocessedFaces[index];
+			if (srcGray.data) {
+				// Get a BGR version of the face, since the output is BGR color.
+				Mat srcBGR = Mat(srcGray.size(), CV_8UC3);
+				cvtColor(srcGray, srcBGR, CV_GRAY2BGR);
+				// Get the destination ROI (and make sure it is within the image!).
+				int y = min(m_gui_faces_top + i * faceHeight,
+						displayedFrame.rows - faceHeight);
+				Rect dstRC = Rect(m_gui_faces_left, y, faceWidth, faceHeight);
+				Mat dstROI = displayedFrame(dstRC);
+				// Copy the pixels from src to dst.
+				srcBGR.copyTo(dstROI);
+			}
+		}
+	}
+	// Show the camera frame on the screen.
+	alert_win(displayedFrame);
+
+	// If the user wants all the debug data, show it to them!
+		Mat face;
+		if (faceRect.width > 0) {
+			face = cameraFrame(faceRect);
+			if (searchedLeftEye.width > 0 && searchedRightEye.width > 0) {
+				Mat topLeftOfFace = face(searchedLeftEye);
+				Mat topRightOfFace = face(searchedRightEye);
+				//imshow("topLeftOfFace", topLeftOfFace);
+				alert_win(topLeftOfFace);
+				//imshow("topRightOfFace", topRightOfFace);
+				alert_win(topRightOfFace);
+			}
+		}
+
+}
+
+

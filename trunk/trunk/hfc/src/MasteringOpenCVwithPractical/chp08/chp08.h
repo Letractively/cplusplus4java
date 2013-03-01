@@ -12,6 +12,6 @@
 #include <opencv2/opencv.hpp>
 
 int test4face_recognition_noCamera_main(int argc, char** argv);
-
+void test4face_detect();
 
 #endif /* CHP08_H_ */
