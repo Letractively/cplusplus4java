@@ -32,7 +32,8 @@ int main(int argc, char** argv)
 	//chp03exam3();
 	//test4cartoonifyImage();
 	//test4annotate_main( argc,  argv);
-	test4face_recognition_noCamera_main(argc,argv);
+	//test4face_recognition_noCamera_main(argc,argv);
+	test4face_detect();
 	//test_pencil_sketch_main(argc,argv);
 	//test4tesseract_api_example(argc,argv);
 	//test4tesseract_chi_tra(argc,argv);
