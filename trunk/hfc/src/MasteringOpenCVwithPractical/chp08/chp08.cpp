@@ -7,7 +7,7 @@
 
 #include "chp08.h"
 
-
+#include "../../util.h"
 
 
 //////////////////////////////////////////////////////////////////////////////////////
@@ -654,16 +654,6 @@ void recognizeAndTrainUsingWebcam( CascadeClassifier &faceCascade, CascadeClassi
         return;
 }
 
-void alert_win(InputArray mat){
-		namedWindow(windowName); // Resizable window, might not work on Windows.
-	    cvResizeWindow(windowName,DESIRED_CAMERA_WIDTH,DESIRED_CAMERA_HEIGHT);
-	    // Get OpenCV to automatically call my "onMouse()" function when the user clicks in the GUI window.
-	    setMouseCallback(windowName, onMouse, 0);
-	    //cvShowImage(windowName,image);
-	    imshow(windowName,mat);
-	    cvWaitKey(0);
-	    cvDestroyWindow(windowName);
-}
 
 
 /*
