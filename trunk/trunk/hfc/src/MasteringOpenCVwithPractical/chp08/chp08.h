@@ -12,7 +12,6 @@
 #include <opencv2/opencv.hpp>
 
 int test4face_recognition_noCamera_main(int argc, char** argv);
-void alert_win(cv::InputArray mat);
 
 
 #endif /* CHP08_H_ */

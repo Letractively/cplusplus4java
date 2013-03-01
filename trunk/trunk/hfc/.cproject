@@ -67,6 +67,7 @@
 									<listOptionValue builtIn="false" value="opencv_highgui242"/>
 									<listOptionValue builtIn="false" value="opencv_imgproc242"/>
 									<listOptionValue builtIn="false" value="opencv_ml242"/>
+									<listOptionValue builtIn="false" value="opencv_objdetect242"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.1624371598" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
@@ -76,7 +77,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="data/|LearningOpenCV/|MasteringOpenCVwithPractical/|opencv_tutorials/|OpenCV2Cookbook/|pencilSketch/|tesseract/" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="src"/>
+						<entry excluding="basicOCR/|data/|LearningOpenCV/|opencv_tutorials/|OpenCV2Cookbook/|pencilSketch/|tesseract/|MasteringOpenCVwithPractical/chp01/|MasteringOpenCVwithPractical/chp06/" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="src"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
