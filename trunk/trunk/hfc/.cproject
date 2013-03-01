@@ -737,7 +737,7 @@
 						</toolChain>
 					</folderInfo>
 					<sourceEntries>
-						<entry excluding="data/|LearningOpenCV/|MasteringOpenCVwithPractical/|opencv_tutorials/|OpenCV2Cookbook/|pencilSketch/|tesseract/" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="src"/>
+						<entry excluding="basicOCR/|data/|LearningOpenCV/|opencv_tutorials/|OpenCV2Cookbook/|pencilSketch/|tesseract/|MasteringOpenCVwithPractical/chp01/|MasteringOpenCVwithPractical/chp06/" flags="VALUE_WORKSPACE_PATH" kind="sourcePath" name="src"/>
 					</sourceEntries>
 				</configuration>
 			</storageModule>
