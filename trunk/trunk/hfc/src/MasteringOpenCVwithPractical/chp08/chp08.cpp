@@ -33,19 +33,19 @@
 //const char *facerecAlgorithm = "FaceRecognizer.Fisherfaces";
 //const char *facerecAlgorithm = "FaceRecognizer.Eigenfaces";
 const char *facerecAlgorithm = "FaceRecognizer.LBPH";
-const char *inputImagePath="src/MasteringOpenCVwithPractical/chp08/img/beauty.jpg";
+const char *inputImagePath="src/MasteringOpenCVwithPractical/chp08/img/gila_close_eye.jpg";
 // Cascade Classifier file:
 //used for Face Detection.
 //const char *faceCascadeFilename = "src/data/lbpcascade_frontalface.xml";     // LBP face detector.
 //const char *faceCascadeFilename = "src/data/haarcascade_frontalface_alt_tree.xml";  // Haar face detector.
 //const char *faceCascadeFilename = "src/data/haarcascades/haarcascade_frontalface_default.xml";
-const char *faceCascadeFilename = "src/data/haarcascades/haarcascade_frontalface_alt_tree.xml";
+const char *faceCascadeFilename = "src/data/haarcascades/haarcascade_frontalface_alt2.xml";
 
 //used for eye Detection.
 //const char *eyeCascadeFilename1 = "src/data/haarcascade_lefteye_2splits.xml";   // Best eye detector for open-or-closed eyes.
 //const char *eyeCascadeFilename2 = "src/data/haarcascade_righteye_2splits.xml";   // Best eye detector for open-or-closed eyes.
-const char *eyeCascadeFilename1 = "src/data/haarcascades/haarcascade_mcs_lefteye.xml";       // Good eye detector for open-or-closed eyes.
-const char *eyeCascadeFilename2 = "src/data/haarcascades/haarcascade_mcs_righteye.xml";       // Good eye detector for open-or-closed eyes.
+const char *eyeCascadeFilename1_left = "src/data/haarcascades/haarcascade_mcs_lefteye.xml";       // Good eye detector for open-or-closed eyes.
+const char *eyeCascadeFilename1_right = "src/data/haarcascades/haarcascade_mcs_righteye.xml";       // Good eye detector for open-or-closed eyes.
 //const char *eyeCascadeFilename1 = "src/data/haarcascade_eye.xml";               // Basic eye detector for open eyes only.
 //const char *eyeCascadeFilename2 = "src/data/haarcascade_eye_tree_eyeglasses.xml"; // Basic eye detector for open eyes if they might wear glasses.
 
@@ -137,7 +137,7 @@ template <typename T> T fromString(string t)
 }
 
 // Load the face and 1 or 2 eye detection XML classifiers.
-void initDetectors(CascadeClassifier &faceCascade, CascadeClassifier &eyeCascade1, CascadeClassifier &eyeCascade2)
+void initDetectors(CascadeClassifier &faceCascade, CascadeClassifier &eyeCascade1_left, CascadeClassifier &eyeCascade1_right)
 {
     // Load the Face Detection cascade classifier xml file.
     try {   // Surround the OpenCV call by a try/catch block so we can give a useful error message!
@@ -152,26 +152,26 @@ void initDetectors(CascadeClassifier &faceCascade, CascadeClassifier &eyeCascade
 
     // Load the Eye Detection cascade classifier xml file.
     try {   // Surround the OpenCV call by a try/catch block so we can give a useful error message!
-        eyeCascade1.load(eyeCascadeFilename1);
+        eyeCascade1_left.load(eyeCascadeFilename1_left);
     } catch (cv::Exception &e) {}
-    if ( eyeCascade1.empty() ) {
-        cerr << "ERROR: Could not load 1st Eye Detection cascade classifier [" << eyeCascadeFilename1 << "]!" << endl;
+    if ( eyeCascade1_left.empty() ) {
+        cerr << "ERROR: Could not load 1st Eye Detection cascade classifier [" << eyeCascadeFilename1_left << "]!" << endl;
         cerr << "Copy the file from your OpenCV data folder (eg: 'C:\\OpenCV\\data\\haarcascades') into this WebcamFaceRec folder." << endl;
         exit(1);
     }
-    cout << "Loaded the 1st Eye Detection cascade classifier [" << eyeCascadeFilename1 << "]." << endl;
+    cout << "Loaded the 1st Eye Detection cascade classifier [" << eyeCascadeFilename1_left << "]." << endl;
 
     // Load the Eye Detection cascade classifier xml file.
     try {   // Surround the OpenCV call by a try/catch block so we can give a useful error message!
-        eyeCascade2.load(eyeCascadeFilename2);
+        eyeCascade1_right.load(eyeCascadeFilename1_right);
     } catch (cv::Exception &e) {}
-    if ( eyeCascade2.empty() ) {
-        cerr << "Could not load 2nd Eye Detection cascade classifier [" << eyeCascadeFilename2 << "]." << endl;
+    if ( eyeCascade1_right.empty() ) {
+        cerr << "Could not load 2nd Eye Detection cascade classifier [" << eyeCascadeFilename1_right << "]." << endl;
         // Dont exit if the 2nd eye detector did not load, because we have the 1st eye detector at least.
         //exit(1);
     }
     else
-        cout << "Loaded the 2nd Eye Detection cascade classifier [" << eyeCascadeFilename2 << "]." << endl;
+        cout << "Loaded the 2nd Eye Detection cascade classifier [" << eyeCascadeFilename1_right << "]." << endl;
 }
 
 // Get access to the webcam.
@@ -704,12 +704,13 @@ int test4face_recognition_noCamera_main(int argc, char *argv[])
 }
 
 void test4face_detect() {
+	//step 1 face detection
 	CascadeClassifier faceCascade;
-	CascadeClassifier eyeCascade1;
-	CascadeClassifier eyeCascade2;
+	CascadeClassifier eyeCascade1_left;
+	CascadeClassifier eyeCascade1_right;
 
 	// Load the face and 1 or 2 eye detection XML classifiers.
-	initDetectors(faceCascade, eyeCascade1, eyeCascade2);
+	initDetectors(faceCascade, eyeCascade1_left, eyeCascade1_right);
 
 	Ptr<FaceRecognizer> model;
 	vector<Mat> preprocessedFaces;
@@ -735,7 +736,7 @@ void test4face_detect() {
 	Rect searchedLeftEye, searchedRightEye; // top-left and top-right regions of the face, where eyes were searched.
 	Point leftEye, rightEye; // Position of the detected eyes.
 	Mat preprocessedFace = getPreprocessedFace(displayedFrame, faceWidth,
-			faceCascade, eyeCascade1, eyeCascade2,
+			faceCascade, eyeCascade1_left, eyeCascade1_right,
 			preprocessLeftAndRightSeparately, &faceRect, &leftEye, &rightEye,
 			&searchedLeftEye, &searchedRightEye);
 
@@ -802,19 +803,18 @@ void test4face_detect() {
 		}
 	}
 	// Show the camera frame on the screen.
-	alert_win(displayedFrame);
+	alert_win( displayedFrame );
 
 	// If the user wants all the debug data, show it to them!
 		Mat face;
 		if (faceRect.width > 0) {
 			face = cameraFrame(faceRect);
+			//alert_win( face );
 			if (searchedLeftEye.width > 0 && searchedRightEye.width > 0) {
 				Mat topLeftOfFace = face(searchedLeftEye);
 				Mat topRightOfFace = face(searchedRightEye);
 				//imshow("topLeftOfFace", topLeftOfFace);
-				alert_win(topLeftOfFace);
 				//imshow("topRightOfFace", topRightOfFace);
-				alert_win(topRightOfFace);
 			}
 		}
 
