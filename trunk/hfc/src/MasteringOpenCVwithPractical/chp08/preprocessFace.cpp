@@ -20,6 +20,7 @@ const double FACE_ELLIPSE_CY = 0.40;
 const double FACE_ELLIPSE_W = 0.50;         // Should be atleast 0.5
 const double FACE_ELLIPSE_H = 0.80;         // Controls how tall the face mask is.
 
+#include "../../util.h"
 
 #include "detectObject.h"       // Easily detect faces or eyes (using LBP or Haar Cascades).
 #include "preprocessFace.h"     // Easily preprocess face images, for face recognition.
@@ -51,7 +52,7 @@ Rect scaleRectFromCenter(const Rect wholeFaceRect, float scale)
 // as well as an eyeglasses detector, or a left eye detector as well as a right eye detector.
 // Or if you don't want a 2nd eye detection, just pass an uninitialized CascadeClassifier.
 // Can also store the searched left & right eye regions if desired.
-void detectBothEyes(const Mat &face, CascadeClassifier &eyeCascade1, CascadeClassifier &eyeCascade2, Point &leftEye, Point &rightEye, Rect *searchedLeftEye, Rect *searchedRightEye)
+void detectBothEyes(const Mat &face, CascadeClassifier &eyeCascade1_left, CascadeClassifier &eyeCascade1_right, Point &leftEye, Point &rightEye, Rect *searchedLeftEye, Rect *searchedRightEye)
 {
     // Skip the borders of the face, since it is usually just hair and ears, that we don't care about.
 /*
@@ -68,6 +69,7 @@ void detectBothEyes(const Mat &face, CascadeClassifier &eyeCascade1, CascadeClas
     const float EYE_SW = 0.40f;
     const float EYE_SH = 0.36f;
 */
+
 
     // For default eye.xml or eyeglasses.xml: Finds both eyes in roughly 40% of detected faces, but does not detect closed eyes.
     const float EYE_SX = 0.16f;
@@ -92,10 +94,18 @@ void detectBothEyes(const Mat &face, CascadeClassifier &eyeCascade1, CascadeClas
         *searchedRightEye = Rect(rightX, topY, widthX, heightY);
 
     // Search the left region, then the right region using the 1st eye detector.
-    detectLargestObject(topLeftOfFace, eyeCascade1, leftEyeRect, topLeftOfFace.cols);
-    detectLargestObject(topRightOfFace, eyeCascade1, rightEyeRect, topRightOfFace.cols);
+    detectLargestObject(topLeftOfFace, eyeCascade1_left, leftEyeRect, topLeftOfFace.cols);
+    detectLargestObject(topRightOfFace, eyeCascade1_right, rightEyeRect, topRightOfFace.cols);
 
-    // If the eye was not detected, try a different cascade classifier.
+Mat alert4left=topLeftOfFace( leftEyeRect );
+alert_win( alert4left );
+Mat alert4right=topRightOfFace( rightEyeRect );
+alert_win( alert4right );
+
+
+
+
+    /*// If the eye was not detected, try a different cascade classifier.
     if (leftEyeRect.width <= 0 && !eyeCascade2.empty()) {
         detectLargestObject(topLeftOfFace, eyeCascade2, leftEyeRect, topLeftOfFace.cols);
         //if (leftEyeRect.width > 0)
@@ -103,6 +113,7 @@ void detectBothEyes(const Mat &face, CascadeClassifier &eyeCascade1, CascadeClas
         //else
         //    cout << "2nd eye detector LEFT failed" << endl;
     }
+
     //else
     //    cout << "1st eye detector LEFT SUCCESS" << endl;
 
@@ -116,7 +127,7 @@ void detectBothEyes(const Mat &face, CascadeClassifier &eyeCascade1, CascadeClas
     }
     //else
     //    cout << "1st eye detector RIGHT SUCCESS" << endl;
-
+*/
     if (leftEyeRect.width > 0) {   // Check if the eye was detected.
         leftEyeRect.x += leftX;    // Adjust the left-eye rectangle because the face border was removed.
         leftEyeRect.y += topY;
@@ -225,13 +236,13 @@ Mat getPreprocessedFace(Mat &srcImg, int desiredFaceWidth, CascadeClassifier &fa
 
     // Check if a face was detected.
     if (faceRect.width > 0) {
-
         // Give the face rect to the caller if desired.
         if (storeFaceRect)
             *storeFaceRect = faceRect;
 
         Mat faceImg = srcImg(faceRect);    // Get the detected face image.
-
+Mat alert4face=srcImg( faceRect );
+alert_win( alert4face );
         // If the input image is not grayscale, then convert the BGR or BGRA color image to grayscale.
         Mat gray;
         if (faceImg.channels() == 3) {
@@ -244,10 +255,10 @@ Mat getPreprocessedFace(Mat &srcImg, int desiredFaceWidth, CascadeClassifier &fa
             // Access the input image directly, since it is already grayscale.
             gray = faceImg;
         }
-
         // Search for the 2 eyes at the full resolution, since eye detection needs max resolution possible!
         Point leftEye, rightEye;
-        detectBothEyes(gray, eyeCascade1, eyeCascade2, leftEye, rightEye, searchedLeftEye, searchedRightEye);
+        //detectBothEyes(gray, eyeCascade1, eyeCascade2, leftEye, rightEye, searchedLeftEye, searchedRightEye);
+        detectBothEyes(faceImg, eyeCascade1, eyeCascade2, leftEye, rightEye, searchedLeftEye, searchedRightEye);
 
         // Give the eye results to the caller if desired.
         if (storeLeftEye)
