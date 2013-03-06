@@ -52,7 +52,7 @@ Rect scaleRectFromCenter(const Rect wholeFaceRect, float scale)
 // as well as an eyeglasses detector, or a left eye detector as well as a right eye detector.
 // Or if you don't want a 2nd eye detection, just pass an uninitialized CascadeClassifier.
 // Can also store the searched left & right eye regions if desired.
-void detectBothEyes(const Mat &face, CascadeClassifier &eyeCascade1_left, CascadeClassifier &eyeCascade1_right, Point &leftEye, Point &rightEye, Rect *searchedLeftEye, Rect *searchedRightEye)
+void roc_refact_detectBothEyes(const Mat &face, CascadeClassifier &eyeCascade1_left, CascadeClassifier &eyeCascade1_right, Point &leftEye, Point &rightEye, Rect *searchedLeftEye, Rect *searchedRightEye)
 {
     // Skip the borders of the face, since it is usually just hair and ears, that we don't care about.
 /*
@@ -70,7 +70,8 @@ void detectBothEyes(const Mat &face, CascadeClassifier &eyeCascade1_left, Cascad
     const float EYE_SH = 0.36f;
 */
 
-
+	Rect leftEyeRect, rightEyeRect,rightOfFace4Rect;
+	/*
     // For default eye.xml or eyeglasses.xml: Finds both eyes in roughly 40% of detected faces, but does not detect closed eyes.
     const float EYE_SX = 0.16f;
     const float EYE_SY = 0.26f;
@@ -85,7 +86,6 @@ void detectBothEyes(const Mat &face, CascadeClassifier &eyeCascade1_left, Cascad
 
     Mat topLeftOfFace = face(Rect(leftX, topY, widthX, heightY));
     Mat topRightOfFace = face(Rect(rightX, topY, widthX, heightY));
-    Rect leftEyeRect, rightEyeRect;
 
     // Return the search windows to the caller, if desired.
     if (searchedLeftEye)
@@ -105,12 +105,20 @@ alert_win( alert4left );
 Mat alert4right=topRightOfFace( rightEyeRect );
 alert_win( alert4right );
     }
-
-    Rect leftEyeAll;
-    detectLargestObject(face, eyeCascade1_left, leftEyeAll, face.cols);
-    if( leftEyeAll.width>0 ){
-    	Mat alert4leftAll=face( leftEyeAll );
-    	alert_win( alert4leftAll );
+*/
+    detectLargestObject(face, eyeCascade1_left, leftEyeRect, face.cols);
+    if( leftEyeRect.width>0 ){
+    	Mat alert4leftEyeRect=face( leftEyeRect );
+    	alert_win( alert4leftEyeRect );
+    	//then right eye detect now
+    	rightOfFace4Rect=Rect(leftEyeRect.x+leftEyeRect.width,0,face.cols-leftEyeRect.x-leftEyeRect.width,face.rows);
+    	Mat detect4rightOfFace=face( rightOfFace4Rect );
+    	if( detect4rightOfFace.cols>0 )alert_win( detect4rightOfFace );
+    	detectLargestObject(detect4rightOfFace, eyeCascade1_right, rightEyeRect, detect4rightOfFace.cols);
+    	if( rightEyeRect.width>0 ){
+    		Mat alert4rightEyeREct=detect4rightOfFace( rightEyeRect );
+    		alert_win( alert4rightEyeREct );
+    	}
     }
 
 
@@ -138,6 +146,8 @@ alert_win( alert4right );
     //else
     //    cout << "1st eye detector RIGHT SUCCESS" << endl;
 */
+
+    /*
     if (leftEyeRect.width > 0) {   // Check if the eye was detected.
         leftEyeRect.x += leftX;    // Adjust the left-eye rectangle because the face border was removed.
         leftEyeRect.y += topY;
@@ -155,6 +165,25 @@ alert_win( alert4right );
     else {
         rightEye = Point(-1, -1);    // Return an invalid point
     }
+    */
+    if( leftEyeRect.width>0 ){
+    	leftEye=Point( leftEyeRect.x+leftEyeRect.width/2,leftEyeRect.y+leftEyeRect.height/2 );
+    	if (searchedLeftEye)
+    	    *searchedLeftEye = Rect(leftEyeRect.x, leftEyeRect.y, leftEyeRect.width, leftEyeRect.height );
+    }else{
+    	leftEye=Point(-1,-1);
+    }
+
+    if( rightEyeRect.width>0 ){
+    	rightEyeRect.x+=rightOfFace4Rect.x;
+    	rightEyeRect.y+=rightOfFace4Rect.y;
+    	rightEye=Point( rightEyeRect.x+rightEyeRect.width/2,rightEyeRect.y+rightEyeRect.height/2 );
+    	if (searchedRightEye)
+			*searchedRightEye = Rect( rightEyeRect.x,rightEyeRect.y,rightEyeRect.width,rightEyeRect.height );
+    }else{
+    	rightEye=Point(-1,-1);
+    }
+
 }
 
 // Histogram Equalize seperately for the left and right sides of the face.
@@ -268,7 +297,7 @@ alert_win( alert4face );
         // Search for the 2 eyes at the full resolution, since eye detection needs max resolution possible!
         Point leftEye, rightEye;
         //detectBothEyes(gray, eyeCascade1, eyeCascade2, leftEye, rightEye, searchedLeftEye, searchedRightEye);
-        detectBothEyes(faceImg, eyeCascade1, eyeCascade2, leftEye, rightEye, searchedLeftEye, searchedRightEye);
+        roc_refact_detectBothEyes(faceImg, eyeCascade1, eyeCascade2, leftEye, rightEye, searchedLeftEye, searchedRightEye);
 
         // Give the eye results to the caller if desired.
         if (storeLeftEye)
@@ -319,7 +348,6 @@ alert_win( alert4face );
                 // Do it seperately for the left and right sides of the face.
                 equalizeLeftAndRightHalves(warped);
             }
-            //imshow("equalized", warped);
 
             // Use the "Bilateral Filter" to reduce pixel noise by smoothing the image, but keeping the sharp edges in the face.
             Mat filtered = Mat(warped.size(), CV_8U);
@@ -347,7 +375,6 @@ alert_win( alert4face );
             // Apply the elliptical mask on the face.
             filtered.copyTo(dstImg, mask);  // Copies non-masked pixels from filtered to dstImg.
             //imshow("dstImg", dstImg);
-
             return dstImg;
         }
         /*

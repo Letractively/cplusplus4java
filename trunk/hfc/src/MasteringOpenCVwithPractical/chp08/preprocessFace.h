@@ -40,7 +40,7 @@ Rect scaleRectFromCenter(const Rect wholeFaceRect, float scale = 0.7f);
 // as well as an eyeglasses detector, or a left eye detector as well as a right eye detector.
 // Or if you don't want a 2nd eye detection, just pass an uninitialized CascadeClassifier.
 // Can also store the searched left & right eye regions if desired.
-void detectBothEyes(const Mat &face, CascadeClassifier &eyeCascade1, CascadeClassifier &eyeCascade2, Point &leftEye, Point &rightEye, Rect *searchedLeftEye = NULL, Rect *searchedRightEye = NULL);
+void roc_refact_detectBothEyes(const Mat &face, CascadeClassifier &eyeCascade1, CascadeClassifier &eyeCascade2, Point &leftEye, Point &rightEye, Rect *searchedLeftEye = NULL, Rect *searchedRightEye = NULL);
 
 // Histogram Equalizae seperately for the left and right sides of the face,
 // so that if there is a strong light on one side but not the other, it will still look OK.
