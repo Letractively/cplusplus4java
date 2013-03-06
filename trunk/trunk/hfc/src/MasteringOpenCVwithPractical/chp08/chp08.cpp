@@ -33,7 +33,7 @@
 //const char *facerecAlgorithm = "FaceRecognizer.Fisherfaces";
 //const char *facerecAlgorithm = "FaceRecognizer.Eigenfaces";
 const char *facerecAlgorithm = "FaceRecognizer.LBPH";
-const char *inputImagePath="src/MasteringOpenCVwithPractical/chp08/img/gila_close_eye.jpg";
+const char *inputImagePath="src/MasteringOpenCVwithPractical/chp08/img/mm006.jpg";
 // Cascade Classifier file:
 //used for Face Detection.
 //const char *faceCascadeFilename = "src/data/lbpcascade_frontalface.xml";     // LBP face detector.
