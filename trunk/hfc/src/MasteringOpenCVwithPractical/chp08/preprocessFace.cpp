@@ -97,11 +97,21 @@ void detectBothEyes(const Mat &face, CascadeClassifier &eyeCascade1_left, Cascad
     detectLargestObject(topLeftOfFace, eyeCascade1_left, leftEyeRect, topLeftOfFace.cols);
     detectLargestObject(topRightOfFace, eyeCascade1_right, rightEyeRect, topRightOfFace.cols);
 
+    if(leftEyeRect.width>0){
 Mat alert4left=topLeftOfFace( leftEyeRect );
 alert_win( alert4left );
+    }
+    if( rightEyeRect.width>0 ){
 Mat alert4right=topRightOfFace( rightEyeRect );
 alert_win( alert4right );
+    }
 
+    Rect leftEyeAll;
+    detectLargestObject(face, eyeCascade1_left, leftEyeAll, face.cols);
+    if( leftEyeAll.width>0 ){
+    	Mat alert4leftAll=face( leftEyeAll );
+    	alert_win( alert4leftAll );
+    }
 
 
 
