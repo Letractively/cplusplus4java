@@ -33,7 +33,7 @@
 //const char *facerecAlgorithm = "FaceRecognizer.Fisherfaces";
 //const char *facerecAlgorithm = "FaceRecognizer.Eigenfaces";
 const char *facerecAlgorithm = "FaceRecognizer.LBPH";
-const char *inputImagePath="src/MasteringOpenCVwithPractical/chp08/img/mm006.jpg";
+const char *inputImagePath="src/MasteringOpenCVwithPractical/chp08/img/yangmi006.jpg";
 // Cascade Classifier file:
 //used for Face Detection.
 //const char *faceCascadeFilename = "src/data/lbpcascade_frontalface.xml";     // LBP face detector.
@@ -815,6 +815,8 @@ void test4face_detect() {
 				Mat topRightOfFace = face(searchedRightEye);
 				//imshow("topLeftOfFace", topLeftOfFace);
 				//imshow("topRightOfFace", topRightOfFace);
+				alert_win( topLeftOfFace );
+				alert_win( topRightOfFace );
 			}
 		}
 
