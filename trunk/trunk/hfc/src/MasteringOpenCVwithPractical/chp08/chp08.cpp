@@ -33,21 +33,28 @@
 //const char *facerecAlgorithm = "FaceRecognizer.Fisherfaces";
 //const char *facerecAlgorithm = "FaceRecognizer.Eigenfaces";
 const char *facerecAlgorithm = "FaceRecognizer.LBPH";
-const char *inputImagePath="src/MasteringOpenCVwithPractical/chp08/img/yangmi006.jpg";
+const char *inputImagePath="src/MasteringOpenCVwithPractical/chp08/img/yangmi004.jpg";//yangmi006_ko.jpg
 // Cascade Classifier file:
 //used for Face Detection.
 //const char *faceCascadeFilename = "src/data/lbpcascade_frontalface.xml";     // LBP face detector.
 //const char *faceCascadeFilename = "src/data/haarcascade_frontalface_alt_tree.xml";  // Haar face detector.
 //const char *faceCascadeFilename = "src/data/haarcascades/haarcascade_frontalface_default.xml";
 const char *faceCascadeFilename = "src/data/haarcascades/haarcascade_frontalface_alt2.xml";
+//const char *faceCascadeFilename = "src/data/haarcascades/haarcascade_mcs_upperbody.xml";
 
 //used for eye Detection.
 //const char *eyeCascadeFilename1 = "src/data/haarcascade_lefteye_2splits.xml";   // Best eye detector for open-or-closed eyes.
 //const char *eyeCascadeFilename2 = "src/data/haarcascade_righteye_2splits.xml";   // Best eye detector for open-or-closed eyes.
-const char *eyeCascadeFilename1_left = "src/data/haarcascades/haarcascade_mcs_lefteye.xml";       // Good eye detector for open-or-closed eyes.
-const char *eyeCascadeFilename1_right = "src/data/haarcascades/haarcascade_mcs_righteye.xml";       // Good eye detector for open-or-closed eyes.
 //const char *eyeCascadeFilename1 = "src/data/haarcascade_eye.xml";               // Basic eye detector for open eyes only.
 //const char *eyeCascadeFilename2 = "src/data/haarcascade_eye_tree_eyeglasses.xml"; // Basic eye detector for open eyes if they might wear glasses.
+
+const char *eyeCascadeFilename1_left = "src/data/haarcascades/haarcascade_mcs_lefteye.xml";       // Good eye detector for open-or-closed eyes.
+const char *eyeCascadeFilename1_right = "src/data/haarcascades/haarcascade_mcs_righteye.xml";       // Good eye detector for open-or-closed eyes.
+
+//const char *eyeCascadeFilename1_left = "src/data/haarcascades/haarcascade_mcs_mouth.xml";
+//const char *eyeCascadeFilename1_right = "src/data/haarcascades/haarcascade_mcs_rightear.xml";
+
+const char *mouthCascadeFilename = "src/data/haarcascades/haarcascade_mcs_mouth.xml";
 
 // Sets how confident the Face Verification algorithm should be to decide if it is an unknown person or a known person.
 // A value roughly around 0.5 seems OK for Eigenfaces or 0.7 for Fisherfaces, but you may want to adjust it for your
@@ -172,6 +179,72 @@ void initDetectors(CascadeClassifier &faceCascade, CascadeClassifier &eyeCascade
     }
     else
         cout << "Loaded the 2nd Eye Detection cascade classifier [" << eyeCascadeFilename1_right << "]." << endl;
+}
+
+// Load the face and 1 or 2 eye detection XML classifiers.
+void roc_initDetectors(CascadeClassifier &faceCascade, CascadeClassifier &eyeCascade1_left, CascadeClassifier &eyeCascade1_right
+		,CascadeClassifier &mouthCascade)
+{
+    // Load the Face Detection cascade classifier xml file.
+    try {   // Surround the OpenCV call by a try/catch block so we can give a useful error message!
+        faceCascade.load(faceCascadeFilename);
+    } catch (cv::Exception &e) {}
+    if ( faceCascade.empty() ) {
+        cerr << "ERROR: Could not load Face Detection cascade classifier [" << faceCascadeFilename << "]!" << endl;
+        cerr << "Copy the file from your OpenCV data folder (eg: 'C:\\OpenCV\\data\\lbpcascades') into this WebcamFaceRec folder." << endl;
+        exit(1);
+    }
+    cout << "Loaded the Face Detection cascade classifier [" << faceCascadeFilename << "]." << endl;
+
+    // Load the Eye Detection cascade classifier xml file.
+    try {   // Surround the OpenCV call by a try/catch block so we can give a useful error message!
+        eyeCascade1_left.load(eyeCascadeFilename1_left);
+    } catch (cv::Exception &e) {}
+    if ( eyeCascade1_left.empty() ) {
+        cerr << "ERROR: Could not load 1st Eye Detection cascade classifier [" << eyeCascadeFilename1_left << "]!" << endl;
+        cerr << "Copy the file from your OpenCV data folder (eg: 'C:\\OpenCV\\data\\haarcascades') into this WebcamFaceRec folder." << endl;
+        exit(1);
+    }
+    cout << "Loaded the 1st Eye Detection cascade classifier [" << eyeCascadeFilename1_left << "]." << endl;
+
+    // Load the Eye Detection cascade classifier xml file.
+    try {   // Surround the OpenCV call by a try/catch block so we can give a useful error message!
+        eyeCascade1_right.load(eyeCascadeFilename1_right);
+    } catch (cv::Exception &e) {}
+    if ( eyeCascade1_right.empty() ) {
+        cerr << "Could not load 2nd Eye Detection cascade classifier [" << eyeCascadeFilename1_right << "]." << endl;
+        // Dont exit if the 2nd eye detector did not load, because we have the 1st eye detector at least.
+        //exit(1);
+    }
+    else
+        cout << "Loaded the 2nd Eye Detection cascade classifier [" << eyeCascadeFilename1_right << "]." << endl;
+
+    // Load the Eye Detection cascade classifier xml file.
+        try {   // Surround the OpenCV call by a try/catch block so we can give a useful error message!
+            eyeCascade1_right.load(eyeCascadeFilename1_right);
+        } catch (cv::Exception &e) {}
+        if ( eyeCascade1_right.empty() ) {
+            cerr << "Could not load 2nd Eye Detection cascade classifier [" << eyeCascadeFilename1_right << "]." << endl;
+            // Dont exit if the 2nd eye detector did not load, because we have the 1st eye detector at least.
+            //exit(1);
+        }
+        else
+            cout << "Loaded the 2nd Eye Detection cascade classifier [" << eyeCascadeFilename1_right << "]." << endl;
+
+
+        // Load the Mouth Detection cascade classifier xml file.
+            try {   // Surround the OpenCV call by a try/catch block so we can give a useful error message!
+                mouthCascade.load( mouthCascadeFilename );
+            } catch (cv::Exception &e) {}
+            if ( mouthCascade.empty() ) {
+                cerr << "Could not load 2nd Mouth Detection cascade classifier [" << mouthCascadeFilename << "]." << endl;
+                // Dont exit if the 2nd eye detector did not load, because we have the 1st eye detector at least.
+                //exit(1);
+            }
+            else
+                cout << "Loaded the Mouth Detection cascade classifier [" << mouthCascadeFilename << "]." << endl;
+
+
 }
 
 // Get access to the webcam.
@@ -708,9 +781,10 @@ void test4face_detect() {
 	CascadeClassifier faceCascade;
 	CascadeClassifier eyeCascade1_left;
 	CascadeClassifier eyeCascade1_right;
+	CascadeClassifier mouthCascade;
 
 	// Load the face and 1 or 2 eye detection XML classifiers.
-	initDetectors(faceCascade, eyeCascade1_left, eyeCascade1_right);
+	roc_initDetectors(faceCascade, eyeCascade1_left, eyeCascade1_right,mouthCascade);
 
 	Ptr<FaceRecognizer> model;
 	vector<Mat> preprocessedFaces;
@@ -735,8 +809,9 @@ void test4face_detect() {
 	Rect faceRect; // Position of detected face.
 	Rect searchedLeftEye, searchedRightEye; // top-left and top-right regions of the face, where eyes were searched.
 	Point leftEye, rightEye; // Position of the detected eyes.
-	Mat preprocessedFace = getPreprocessedFace(displayedFrame, faceWidth,
+	Mat preprocessedFace = roc_getPreprocessedFace(displayedFrame, faceWidth,
 			faceCascade, eyeCascade1_left, eyeCascade1_right,
+			mouthCascade,
 			preprocessLeftAndRightSeparately, &faceRect, &leftEye, &rightEye,
 			&searchedLeftEye, &searchedRightEye);
 
