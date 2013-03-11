@@ -59,4 +59,8 @@ void equalizeLeftAndRightHalves(Mat &faceImg);
 // If a face is found, it can store the rect coordinates into 'storeFaceRect' and 'storeLeftEye' & 'storeRightEye' if given,
 // and eye search regions into 'searchedLeftEye' & 'searchedRightEye' if given.
 Mat getPreprocessedFace(Mat &srcImg, int desiredFaceWidth, CascadeClassifier &faceCascade, CascadeClassifier &eyeCascade1, CascadeClassifier &eyeCascade2, bool doLeftAndRightSeparately, Rect *storeFaceRect = NULL, Point *storeLeftEye = NULL, Point *storeRightEye = NULL, Rect *searchedLeftEye = NULL, Rect *searchedRightEye = NULL);
-
+Mat roc_getPreprocessedFace(Mat &srcImg, int desiredFaceWidth
+		, CascadeClassifier &faceCascade, CascadeClassifier &eyeCascade1, CascadeClassifier &eyeCascade2
+		, CascadeClassifier &mouthCascade
+		, bool doLeftAndRightSeparately
+		, Rect *storeFaceRect = NULL, Point *storeLeftEye = NULL, Point *storeRightEye = NULL, Rect *searchedLeftEye = NULL, Rect *searchedRightEye = NULL);
