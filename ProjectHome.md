@@ -1,0 +1,1 @@
+collect all c++,java,etc,such as flash,flex or ajax.
